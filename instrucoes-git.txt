@@ -1,0 +1,11 @@
+1. Acesse o diretório do projeto dentro de C:/xampp/htdocs/
+
+2. git pull - Atualiza a pasta local conforme o repositório
+
+2. Altere o seu codigo
+
+3. git add . - Adiciona todos os arquivos alterados da pasta
+
+4. git commit -m "Mensagem informando o que foi alterado"
+
+5. git push - Envia as alterações para o repositório.
