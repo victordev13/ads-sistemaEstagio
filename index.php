@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Estágio</title>
+    <title>Sistema de controle de Estágio</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,14 +14,13 @@
     $(document).ready(function(){
   				$('#cpf').mask('000.000.000-00', {reverse: true});
 			});
-
     </script>
 </head>
-<body>
+<body class="bg-green">
     <div class="row justify-content-center align-items-center" style="height:100vh; width: 100%">
         <div class="col-md-3">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body"> 
                 <img src="img/fvclogo.png" class="logo-form">
                     <form action="login.php" method="POST">
                         <div class="form-group">    
@@ -30,9 +29,9 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Senha:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Senha" name="pwd" required="" minlength="4">
+                            <input type="password" class="form-control" id="pwd" placeholder="Senha" name="pwd" required="" minlength=6 maxlength=12>
                         </div>
-                        <button type="submit" class="btn btn-success">Login</button>
+                        <button type="submit" class="btn btn-default btn-green-fvc">Login</button>
                     </form>
                 </div>
             </div>
