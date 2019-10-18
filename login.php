@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once'db/db_connect.php';
 require_once'functions.php';
 
@@ -8,16 +9,19 @@ if($_POST['cpf'] || $_POST['usuario'] && $_POST['pwd']){
 
 	if($tipoUsuario == 0){
 
-		$cpf = htmlspecialchars($_POST['cpf']);
+		$cpf = mysqli_real_escape_string($connect, $_POST['cpf']);
 		$cpf = formatarCPF($cpf);
-		$senha = md5(htmlspecialchars($_POST['senha']));
+		$senha = mysqli_real_escape_string($connect, $_POST['senha']);
+		$senha = md5($senha);
+		echo $cpf;
 		loginAluno($cpf, $senha);
 
 
 	}else if($tipoUsuario == 1){
 
-		$usuario = htmlspecialchars($_POST['usuario']);
-		$senha = md5(htmlspecialchars($_POST['senha']));
+		$usuario = mysqli_real_escape_string($connect, $_POST['usuario']);
+		$senha = mysqli_real_scape_string($connect, $_POST['senha']);
+		$senha = md5($senha);
 		loginAdministrador($usuario, $senha);
 
 	}
@@ -25,4 +29,5 @@ if($_POST['cpf'] || $_POST['usuario'] && $_POST['pwd']){
 }else{
 	header('Location: index.php?erro=loginInvalido');
 }
+
 ?>

@@ -16,6 +16,8 @@
     $(document).ready(function(){
   	     $('#cpf').mask('000.000.000-00', {reverse: true});
 	});
+
+    //tratar metodo de retorno da mensagem de erro
     $(document).ready(function(){
         var url = window.location.href; 
         var res = url.split('='); 
