@@ -1,6 +1,6 @@
 <?php
 $db_host = "localhost:3307";
-$db_name = "sistema_estagio";
+$db_name = "nucleo_estagio";
 $db_user = "root";
 $db_password = "";
 

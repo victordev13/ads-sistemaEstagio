@@ -16,15 +16,6 @@
     $(document).ready(function(){
   	     $('#cpf').mask('000.000.000-00', {reverse: true});
 	});
-
-    //tratar metodo de retorno da mensagem de erro
-    $(document).ready(function(){
-        var url = window.location.href; 
-        var res = url.split('='); 
-        if(res[1] == "loginInvalido"){
-            alert("Login e/ou senha inválido(s)");
-        }
-    })
     </script>
 </head>
 <body class="bg-green">
@@ -34,6 +25,36 @@
                 <div class="card-body"> 
                 <img src="img/fvclogo.png" class="logo-form">
                     <form action="login.php" method="POST" id="formLogin">
+
+                        <?php
+                            session_start();
+                            if(isset($_SESSION['logado']) && isset($_SESSION['nivelUsuario'])){
+
+                                if($_SESSION['nivelUsuario'] == 0){
+                                    echo "<div class='alert alert-warning alerta-sm' role='alert'>";
+                                    echo "Você está logado como Aluno! <a href='aluno/painel.php' class='alert-link'>Acessar</a>";
+                                    echo "</div>";
+                                }else if($_SESSION['nivelUsuario'] == 1){
+                                    echo "<div class='alert alert-danger' role='alert'>";
+                                    echo "Você está logado como Administrador! <a href='admin/painel.php' class='alert-link'>Acessar</a>";
+                                    echo "</div>";
+                                }
+                            }
+
+                            if(isset($_SESSION['erroLogin']) && isset($_SESSION['erroLoginUsuario'])){
+                                if($_SESSION['erroLoginUsuario'] == 0){
+                                    echo "<div class='alert alert-danger alerta-sm' role='alert'>";
+                                    echo "CPF e/ou Senha inválido(s) ";
+                                    echo "</div>";
+                                    session_destroy();
+                                }else if($_SESSION['erroLoginUsuario'] == 1){
+                                    echo "<div class='alert alert-danger alerta-sm' role='alert'>";
+                                    echo "Usuário e/ou Senha inválido(s) ";
+                                    echo "</div>";
+                                    session_destroy();
+                                }
+                            }
+                        ?>
                         <div class="form-group">
                             <label for="tipoUsuario">Tipo de usuário:</label>
                             <select class="form-control form-control-sm" id="tipoUsuario" name="tipoUsuario" onchange="validaTipoUsuario();" required="">
@@ -51,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Senha:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Senha" name="senha" required="" minlength=6 maxlength=12>
+                            <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha" required="" minlength=6 maxlength=12>
                         </div>
                         <button type="submit" class="btn btn-default btn-green-fvc">Login</button>
                     </form>
