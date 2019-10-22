@@ -1,14 +1,13 @@
 <?php
-$db_host = "localhost:3307";
-$db_name = "nucleo_estagio";
-$db_user = "root";
-$db_password = "";
+define('DB_HOST', 'localhost:3307');
+define('DB_NAME', 'nucleo_estagio');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
 
-$connect = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-if (mysqli_connect_errno())
-  {
+if (mysqli_connect_errno()){
   echo "Falha ao conectar ao MySQL: " . mysqli_connect_error();
-  }
+}
 
 ?>

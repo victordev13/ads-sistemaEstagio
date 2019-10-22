@@ -1,33 +1,25 @@
 <?php
 	require_once'header.php';
-	require_once'footer.php';
 	require_once'../functions.php';
 
 	ValidaSessao("logado", 0);
 ?>
-<div class="container">
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<h1 class="page-header">
-			Resumo</h1>
-		<div class="row placeholders">
-			<div class="col-xs-6 col-sm-3 placeholder">
-			<h4>texto</h4>
-			<span class="text-muted">Something else</span> 
-		</div>
-		<div class="col-xs-6 col-sm-3 placeholder">
-			<h4>texto</h4>
-			<span class="text-muted">Something else</span> 
-		</div>
-		<div class="col-xs-6 col-sm-3 placeholder">
-			<h4>texto</h4>
-			<span class="text-muted">Something else</span> 
-		</div>
-		<div class="col-xs-6 col-sm-3 placeholder">
-			<h4>texto</h4>
-			<span class="text-muted">Something else</span> 
-		</div>
-	</div>
+<div class="container mt-5">
+    <div class="card-deck">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Horas complementares cumpridas</div>
+                <div class="card-body">
+                    <h3 class="display-4"><?php echo "20h"; ?></h3>
+                </div>
+            </div>
+            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card-header">Horas complementares restantes</div>
+                <div class="card-body">
+                    <h3 class="display-4"><?php echo "20h"; ?></h3>
+                </div>
+            </div>
+    </div>
 </div>
-
-</body>
-</html>
+<?php
+	require_once'footer.php';
+?>

@@ -64,8 +64,9 @@ function loginAdministrador($usuario, $senha){
 }
 //Função onde verifica se o usuário está logado e o direciona para a página inicial, caso não esteja
 function ValidaSessao($sessao, $nivelUsuario){
-	session_start();
-
+	if(!isset($_SESSION)){
+		session_start();
+	}
 	//verifica se existem as sessoes passada por parametro e nivelUsuario
 	if(!isset($_SESSION[$sessao]) && !isset($_SESSION['nivelUsuario'])){
 		header('Location: ../index.php');
