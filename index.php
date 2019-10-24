@@ -25,7 +25,6 @@
                 <div class="card-body"> 
                 <img src="img/fvclogo.png" class="logo-form">
                     <form action="login.php" method="POST" id="formLogin">
-
                         <?php
                             session_start();
                             if(isset($_SESSION['logado']) && isset($_SESSION['nivelUsuario'])){

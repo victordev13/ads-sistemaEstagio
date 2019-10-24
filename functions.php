@@ -52,6 +52,7 @@ function loginAdministrador($usuario, $senha){
 }
 
 function ValidaSessao($sessao, $nivelUsuario){
+
 	if(!isset($_SESSION)){
 		session_start();
 	}
@@ -62,9 +63,69 @@ function ValidaSessao($sessao, $nivelUsuario){
 			header('Location: ../index.php');
 		}
 	}
+}
+
+function Cursos(){
+
+	global $connect;
+	
+	$sql = "SELECT curso FROM nucleo_estagio.cursos";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		while($reg = $resultado->fetch_array()) {
+			$dados[] = $reg['curso']; 
+		}
+		return $dados;
+	}else{
+		return false;
+	}
+}
+
+
+function CursosId(){
+
+	global $connect;
+	
+	$sql = "SELECT curso_id FROM nucleo_estagio.cursos";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		while($reg = $resultado->fetch_array()) {
+			$dados[] = $reg['curso_id']; 
+		}
+		return $dados;
+	}else{
+		return false;
+	}
+}
+
+function getAlunos(){
+
+}
+
+
+function buscarAluno($matricula){
+
+	global $connect;
+	//setar matricula como unique no banco de dados
+	$sql = "SELECT * FROM nucleo_estagio.aluno WHERE matricula LIKE '$matricula';";
+	$resultado = mysqli_query($connect, $sql);
+	if($resultado){
+		while($row_aluno = mysqli_fetch_array($resultado)){
+			$aluno[] = $row_aluno['aluno_id'];
+			$aluno[] = $row_aluno['nome'];
+			$aluno[] = $row_aluno['matricula'];
+			$aluno[]= $row_aluno['curso'];
+		}
+		if(!empty($aluno)){
+			return $aluno;
+		}
+	}else{
+		return false;
+	}
 	
 }
 
-function alterarSenha(){
+?>
 
-}

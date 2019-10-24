@@ -20,3 +20,13 @@ img.logo-form{
 .alerta-sm{
 	font-size: 9pt;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}

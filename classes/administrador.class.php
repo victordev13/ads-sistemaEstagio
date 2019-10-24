@@ -3,12 +3,12 @@ require_once'../db/db_connect.php';
 
 class Administrador
 {
-	public $nome;
-	protected $usuario;
+	private $nome;
+	private $email;
+	private $usuario;
 	private $senha;
-	public $email;
 
-	function __construct($nome, $usuario, $senha)
+	function __construct($nome, $email, $usuario, $senha)
 	{
 		
 	}

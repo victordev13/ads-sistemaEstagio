@@ -17,6 +17,11 @@
     <script type="text/javascript" src="<?php echo JS_FOLDER; ?>jquery.mask.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_FOLDER; ?>bootstrap.js"></script>
     <script type="text/javascript" src="<?php echo JS_FOLDER; ?>functions.js"></script>
+    <script>
+    $(document).ready(function(){
+  	     $('#cpf').mask('000.000.000-00', {reverse: true});
+	  });
+    </script>
 </head>
 <body>
 <main>
