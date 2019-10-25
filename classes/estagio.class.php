@@ -22,7 +22,7 @@ class Estagio
 		
 		global $connect;
 		
-		$sql = "INSERT INTO nucleo_estagio.estagio (`contrato`, `status_relatorio`, `classifi_relatorio`, `num_doc_convenio`, `data_registro`, `aluno_aluno_id`) VALUES ('$this->contrato', '$this->status_relatorio', '$this->classificacao_relatorio', '$this->convenio', CURDATE(), '$this->aluno_id')";
+		$sql = "INSERT INTO estagio (`contrato`, `status_relatorio`, `classifi_relatorio`, `num_doc_convenio`, `data_registro`, `aluno_aluno_id`) VALUES ('$this->contrato', '$this->status_relatorio', '$this->classificacao_relatorio', '$this->convenio', CURDATE(), '$this->aluno_id')";
 		
 		$resultado = mysqli_query($connect, $sql);
 

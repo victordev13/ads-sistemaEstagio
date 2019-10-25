@@ -10,6 +10,7 @@
             $cpf = formatarCPF($cpf);
             $curso = mysqli_real_escape_string($connect, $_POST['curso']);
             $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
+            $matricula = str_pad($matricula, 9, "0");
 
             $aluno = new Aluno($nome, $cpf, $matricula, $curso);
 

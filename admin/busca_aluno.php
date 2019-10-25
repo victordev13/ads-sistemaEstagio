@@ -40,7 +40,11 @@ if(!empty($sucesso)){
       <input type="number" class="form-control" id="matricula" name="matricula" required="" placeholder="N° da matrícula">
     </div>
   </div>
-  <button type="submit" class="btn btn-green-fvc">Buscar</button>
+  <span class="input-group-btn">
+                <button type="submit" class="btn btn-green-fvc">Buscar
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
 </form>
 
 <?php
@@ -56,7 +60,7 @@ if(isset($resultado)){
             <th scope='col'>Nome</th>
             <th scope='col'>Matricula</th>
             <th scope='col'>Curso</th>
-            <th scope-'col'>Ação</th>
+            <th scope-'col'></th>
           </tr>
         </thead>" ;
 
@@ -65,11 +69,14 @@ if(isset($resultado)){
           <th scope='row'>".$nome."</th>
           <td>".$matricula."</td>
           <td>".$curso."</td>
-          <td><a href='#'>Selecionar</a></td>
+          <td>
+          <a href='#' class='btn btn-primary btn-sm'>Editar</a>
+          <a href='#' class='btn btn-danger btn-sm'>X</a>
+          </td>
         </tr>
       </tbody>
     </table>";
-
+        
     echo $table_head;
     echo $table_body;
 
