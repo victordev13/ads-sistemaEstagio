@@ -61,6 +61,7 @@
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meu perfil</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="editar_perfil.php">Editar</a>
             <a class="dropdown-item" href="alterar_senha.php">Alterar senha</a>
             <a class="dropdown-item" href="../logout.php">Sair</a>
         </li>

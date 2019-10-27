@@ -77,7 +77,7 @@ if(!empty($sucesso)){
     </div>
     <div class="form-group col-md-4">
       <label for="matricula">Matricula</label>
-      <input type="number" class="form-control" id="matricula" name="matricula" required="">
+      <input type="number" class="form-control" id="matricula" name="matricula" placeholder="Matricula" required="">
     </div>
   </div>
   <button type="submit" class="btn btn-green-fvc">Cadastrar</button>

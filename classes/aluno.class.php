@@ -25,13 +25,12 @@ class Aluno
 
 		$sql = "INSERT INTO nucleo_estagio.aluno (nome, matricula, curso_id) VALUES('$this->nome', '$this->matricula', '$this->curso');";
 		$resultado = mysqli_query($connect, $sql);
-
+	
 		if($resultado){
 			return true;
 		}else{
 			return false;
 		}
-
 	}
 
 	public function cadastrarLogin(){
@@ -42,6 +41,7 @@ class Aluno
 		$resultado = mysqli_query($connect, $sql);
 		$aluno_id = mysqli_fetch_assoc($resultado);
 		$aluno_id = implode(',', $aluno_id);
+		
 		$sql_login = "INSERT INTO nucleo_estagio.login_aluno (cpf, senha, aluno_aluno_id) VALUES('$this->cpf', '$this->senha', '$aluno_id')";
 		$resultado_login = mysqli_query($connect, $sql_login);
 		

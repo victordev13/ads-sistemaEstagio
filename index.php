@@ -53,6 +53,13 @@
                                     session_destroy();
                                 }
                             }
+
+                            if(isset($_SESSION['logout'])){
+                                    echo "<div class='alert alert-success alerta-sm' role='alert'>";
+                                    echo "Logout efetuado com sucesso!";
+                                    echo "</div>";
+                                    session_destroy();
+                            }
                         ?>
                         <div class="form-group">
                             <label for="tipoUsuario">Tipo de usuário:</label>

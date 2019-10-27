@@ -4,47 +4,41 @@
     require_once '../classes/funcionario.class.php';
 
     if(isset($_POST)){
-        if(isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['curso']) && isset($_POST['matricula'])){
+        if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario']) && isset($_POST['senha'])){
             $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-            $cpf = mysqli_real_escape_string($connect, $_POST['cpf']);
-            $cpf = formatarCPF($cpf);
-            $curso = mysqli_real_escape_string($connect, $_POST['curso']);
-            $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
-            $matricula = str_pad($matricula, 9, "0");
+            $email = mysqli_real_escape_string($connect, $_POST['email']);
+            $usuario = mysqli_real_escape_string($connect, $_POST['usuario']);
+            $senha = mysqli_real_escape_string($connect, $_POST['senha']);
+            $senha = md5($senha);
 
-            $aluno = new Aluno($nome, $cpf, $matricula, $curso);
+            $funcionario = new Funcionario($nome, $email, $usuario, $senha);
 
-            $cadastro = $aluno->cadastrar();
+            $cadastro = $funcionario->cadastrar();
 
             if($cadastro){
-              $login = $aluno->cadastrarLogin();
-
-              if($login){
-                $sucesso = "Aluno ".$nome." cadastrado com sucesso!";
+                $_SESSION['sucesso'] = "Funcionário ".$nome." cadastrado com sucesso!";
               }else{
-                $erro = "Ocorreu um erro ao inserir os dados!";
+                $_SESSION['erro'] = "Ocorreu um erro ao inserir os dados!";
               }
-
-            }else{
-                $erro = "Ocorreu um erro ao inserir os dados!";
-            }
         }   
     }
 ?>
 <div class="container mt-3 col-md-6">
-<h2>Cadastrar novo aluno</h2>
+<h2>Cadastrar Funcionário</h2>
 <?php
 
- if(!empty($erro)){
+if(isset($_SESSION['erro'])){
     echo "<div class='alert alert-danger alerta-sm' role='alert'>";
-    echo $erro;
+    echo $_SESSION['erro'];
     echo "</div>";
+    unset($_SESSION['erro']);
 }
 
-if(!empty($sucesso)){
+if(isset($_SESSION['sucesso'])){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
-    echo $sucesso;
+    echo $_SESSION['sucesso'];
     echo "</div>";
+    unset($_SESSION['sucesso']);
 }
 
 ?>
@@ -55,29 +49,18 @@ if(!empty($sucesso)){
       <input type="text" class="form-control" id="nome" placeholder="Nome completo" name="nome" required="">
     </div>
     <div class="form-group col">
-      <label for="cpf">CPF</label>
-      <input type="text" class="cpf form-control" id="cpf" placeholder="CPF" name="cpf" minlength=11 maxlength=11 required="">
+      <label for="email">Email</label>
+      <input type="email" class="cpf form-control" id="email" placeholder="Email" name="email" required="">
     </div>    
   </div>
   <div class="form-row">
-  <div class="form-group col">
-      <label for="curso ">Curso</label>
-      <select id="curso" class="form-control" name="curso" required="">
-        <option selected>Selecione...</option>
-        <?php
-            $cursos = Cursos();
-            $cursos_id = CursosId();
-            if($cursos){
-                for($i = 0; $i <count($cursos_id); $i++){
-                    echo "<option value='".$cursos_id[$i]."'>".$cursos[$i]."</option>"."\n";
-                }
-            }
-        ?>
-      </select>
+    <div class="form-group col-md-4">
+      <label for="usuario">Nome de usuário</label>
+      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome de Usuário" required="">
     </div>
     <div class="form-group col-md-4">
-      <label for="matricula">Matricula</label>
-      <input type="number" class="form-control" id="matricula" name="matricula" required="">
+      <label for="senha">Senha</label>
+      <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" minlength=6 required="">
     </div>
   </div>
   <button type="submit" class="btn btn-green-fvc">Cadastrar</button>
