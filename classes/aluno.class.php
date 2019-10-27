@@ -18,67 +18,12 @@ class Aluno
 		$this->senha = substr($cpf, 0, 6);
 		$this->senha = md5($this->senha);
 	}
- 
-	public function getNome()
-	{
-		return $this->nome;
-	}
-
-	public function setNome($nome)
-	{
-		$this->nome = $nome;
-
-		return $this;
-	}
- 
-	public function getCpf()
-	{
-		return $this->cpf;
-	}
- 
-	public function setCpf($cpf)
-	{
-		$this->cpf = $cpf;
-
-		return $this;
-	}
-
-	public function getMatricula()
-	{
-		return $this->matricula;
-	}
-
-	public function setMatricula($matricula)
-	{
-		$this->matricula = $matricula;
-
-		return $this;
-	}
- 
-	public function getCurso()
-	{
-		return $this->curso;
-	}
-
-	public function setCurso($curso)
-	{
-		$this->curso = $curso;
-
-		return $this;
-	}
 
 	public function cadastrar(){
 		
 		global $connect; 
 
-		$sql = "INSERT INTO nucleo_estagio.aluno (nome, matricula, curso) VALUES('$this->nome', '$this->matricula', '$this->curso');";
-		/*
-		$sql_id = "SELECT aluno_id FROM nucleo_estagio.aluno WHERE matricula='$this->matricula';";
-		$resultado = mysqli_query($connect, $sql_id);
-		$aluno_id = mysqli_fetch_assoc($resultado_aluno_id);
-
-		$sql = $sql."INSERT INTO nucleo_estagio.login_aluno (cpf, senha, aluno_aluno_id) VALUES('$this->cpf', '$this->senha', '$aluno_id')";
-		*/
+		$sql = "INSERT INTO nucleo_estagio.aluno (nome, matricula, curso_id) VALUES('$this->nome', '$this->matricula', '$this->curso');";
 		$resultado = mysqli_query($connect, $sql);
 
 		if($resultado){

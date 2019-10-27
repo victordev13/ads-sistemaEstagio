@@ -69,7 +69,7 @@ function Cursos(){
 
 	global $connect;
 	
-	$sql = "SELECT curso FROM nucleo_estagio.cursos";
+	$sql = "SELECT curso FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
 
 	if($resultado){
@@ -87,7 +87,7 @@ function CursosId(){
 
 	global $connect;
 	
-	$sql = "SELECT curso_id FROM nucleo_estagio.cursos";
+	$sql = "SELECT curso_id FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
 
 	if($resultado){
@@ -109,14 +109,16 @@ function buscarAluno($matricula){
 
 	global $connect;
 	//setar matricula como unique no banco de dados
-	$sql = "SELECT * FROM nucleo_estagio.aluno WHERE matricula LIKE '$matricula';";
+	$sql = "SELECT * FROM nucleo_estagio.aluno, nucleo_estagio.login_aluno WHERE matricula LIKE '$matricula';";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
 		while($row_aluno = mysqli_fetch_array($resultado)){
 			$aluno[] = $row_aluno['aluno_id'];
 			$aluno[] = $row_aluno['nome'];
 			$aluno[] = $row_aluno['matricula'];
-			$aluno[]= $row_aluno['curso'];
+			$aluno[]= $row_aluno['curso_id'];
+			$aluno[]= $row_aluno['cpf'];
+			$aluno[]= $row_aluno['senha'];
 		}
 		if(!empty($aluno)){
 			return $aluno;
@@ -127,5 +129,31 @@ function buscarAluno($matricula){
 	
 }
 
+
+function updateAluno($nome, $cpf, $curso, $matricula, $aluno_id){
+	global $connect; 
+
+	$sql = "UPDATE nucleo_estagio.aluno SET nome='$nome', matricula='$matricula', curso_id='$curso' WHERE aluno_id='$aluno_id'";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		return true;
+	}else{ 
+		return false;
+	}
+}
+
+function excluirAluno($aluno_id){
+	global $connect; 
+
+	$sql = "DELETE FROM nucleo_estagio.aluno WHERE aluno_id='$aluno_id'";
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		return true;
+	}else{ 
+		return false;
+	}
+}
 ?>
 

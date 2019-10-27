@@ -9,28 +9,58 @@
             $resultado = buscarAluno($matricula);
             
             if($resultado == false){
-                $erro = "Aluno não encontrado!";
-            }else{
-                
+                $_SESSION['erro'] = "Aluno não encontrado!";
             }
         }
+    }
 
+    if(isset($_POST['excluir'])){
+      if(excluirAluno($_SESSION['aluno_id'])){
+        $_SESSION['sucesso'] = "Aluno excluído com sucesso!";
+      }else{
+        $_SESSION['erro'] = "Erro ao excluir aluno!";
+      }
     }
 ?>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aviso!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Deseja excluir o registro?</p>
+      </div>
+      <div class="modal-footer">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+          <button type="submit" class="btn btn-danger" value="1" name="excluir">Excluir</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="container mt-3 col-md-8">
 <h2>Buscar Aluno</h2>
 <?php
 
- if(!empty($erro)){
+if(isset($_SESSION['erro'])){
     echo "<div class='alert alert-danger alerta-sm' role='alert'>";
-    echo $erro;
+    echo $_SESSION['erro'];
     echo "</div>";
+    unset($_SESSION['erro']);
 }
 
-if(!empty($sucesso)){
+if(isset($_SESSION['sucesso'])){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
-    echo $sucesso;
+    echo $_SESSION['sucesso'];
     echo "</div>";
+    unset($_SESSION['sucesso']);
 }
 
 ?>
@@ -50,6 +80,7 @@ if(!empty($sucesso)){
 <?php
 if(isset($resultado)){
     if(!$resultado == false){
+        $_SESSION['aluno_id'] = $resultado[0];
         $nome = $resultado[1];
         $matricula = $resultado[2];
         $curso = $resultado[3];
@@ -70,8 +101,8 @@ if(isset($resultado)){
           <td>".$matricula."</td>
           <td>".$curso."</td>
           <td>
-          <a href='#' class='btn btn-primary btn-sm'>Editar</a>
-          <a href='#' class='btn btn-danger btn-sm'>X</a>
+          <a href='editar_aluno.php?m=".$matricula."'' class='btn btn-primary btn-sm'>Editar</a>
+          <a href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal'>X</a>
           </td>
         </tr>
       </tbody>

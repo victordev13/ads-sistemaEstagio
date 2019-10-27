@@ -97,7 +97,7 @@ if(isset($resultado)){
         </div>";
 
         $form_classificacao_relatorio = "<div class='form-group col-md-4'>
-        <label for='classificacao_relatorio'>Classificação do relatório</label>
+        <label for='classificacao_relatorio'>Relatório</label>
         <select id='classificacao_relatorio' class='form-control' name='classificacao_relatorio' required=''>
           <option selected>Selecione...</option>
           <option value='nao contem'>Não contém</option>
