@@ -102,22 +102,6 @@ function CursosId(){
 	}
 }
 
-function getAlunos(){
-	
-	global $connect;
-//editar, codigo apenas como modelo.
-	$sql = "SELECT * FROM nucleo_estagio.aluno, nucleo_estagio.login_aluno WHERE matricula LIKE '$matricula';";
-	$resultado = mysqli_query($connect, $sql);
-	
-	if($resultado){
-		return $resultado;
-	}else{
-		return false;
-	}
-
-}
-
-
 function buscarAluno($matricula){
 
 	global $connect;
@@ -140,6 +124,17 @@ function buscarAluno($matricula){
 		return false;
 	}
 	
+}
+
+function updateAluno($nome, $curso, $matricula, $aluno_id){
+	global $connect; 
+	$sql = "UPDATE nucleo_estagio.aluno SET nome='$nome', matricula='$matricula', curso_id='$curso' WHERE aluno_id='$aluno_id'";
+	$resultado = mysqli_query($connect, $sql);
+	if($resultado){
+		return true;
+	}else{ 
+		return false;
+	}
 }
 
 function excluirAluno($aluno_id){
@@ -192,4 +187,13 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}else{ 
 		return false;
 	}
+}
+
+
+function mostraQtdAlunos(){
+	echo 20;
+}
+
+function mostraQtdFuncionarios(){
+	echo 20;
 }

@@ -10,16 +10,15 @@ if(isset($_GET['m'])){
 }
 
 if(isset($_POST['editar'])){
-  if(isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['curso']) && isset($_POST['matricula'])){
+  if(isset($_POST['nome']) && isset($_POST['curso']) && isset($_POST['matricula'])){
     
     $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-    $cpf = mysqli_real_escape_string($connect, $_POST['cpf']);
     $curso =mysqli_real_escape_string($connect, $_POST['curso']);
     $matricula =mysqli_real_escape_string($connect, $_POST['matricula']);
 
     $dados = buscarAluno($matricula);  
 
-    if(updateAluno($nome, $cpf, $curso, $matricula, $dados['0'])){
+    if(updateAluno($nome, $curso, $matricula, $dados['0'])){
         $_SESSION['sucesso'] = "Alterado com sucesso!";
         header("Location: busca_aluno.php");
         
@@ -42,7 +41,7 @@ if(isset($_POST['editar'])){
     </div>
     <div class="form-group col">
       <label for="cpf">CPF</label>
-      <input type="text" class="cpf form-control" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $dados['4']; ?>" minlength=11 maxlength=11 required="">
+      <input type="text" class="cpf form-control" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $dados['4']; ?>" minlength=11 maxlength=11 disabled>
     </div>    
   </div>
   <div class="form-row">

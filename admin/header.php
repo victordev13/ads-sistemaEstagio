@@ -1,5 +1,4 @@
 <?php
-  require_once "{$_SERVER['DOCUMENT_ROOT']}/ads-sistemaEstagio/dir_map.php";
   require_once'../functions.php';
   ValidaSessao("logado", 1);
 ?>
