@@ -41,7 +41,7 @@ if(isset($_POST['editar'])){
     </div>
     <div class="form-group col">
       <label for="cpf">CPF</label>
-      <input type="text" class="cpf form-control" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $dados['4']; ?>" minlength=11 maxlength=11 disabled>
+      <input type="text" class="cpf form-control" id="cpf" placeholder="CPF" name="cpf" value="<?php echo $dados['5']; ?>" minlength=11 maxlength=11 disabled>
     </div>    
   </div>
   <div class="form-row">

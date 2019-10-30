@@ -14,14 +14,13 @@
             }
         }
 
-        if(isset($_POST['aluno_id']) && isset($_POST['contrato']) && isset($_POST['status_relatorio']) && isset($_POST['classificacao_relatorio']) && isset($_POST['convenio'])){
+        if(isset($_POST['aluno_id']) && isset($_POST['contrato']) && isset($_POST['convenio'])){
           $aluno_id = mysqli_real_escape_string($connect, $_POST['aluno_id']);;
           $contrato = mysqli_real_escape_string($connect, $_POST['contrato']);
-          $status_relatorio = mysqli_real_escape_string($connect, $_POST['status_relatorio']);
-          $classificacao_relatorio = mysqli_real_escape_string($connect, $_POST['classificacao_relatorio']); 
           $convenio = mysqli_real_escape_string($connect, $_POST['convenio']);
 
-          $estagio = new Estagio($aluno_id, $contrato, $status_relatorio, $classificacao_relatorio, $convenio);
+          $estagio = new Estagio($aluno_id, $contrato, $convenio);
+
           if($estagio->cadastrarEstagio()){
             $sucesso = "Estágio cadastrado com sucesso!";
           }else{
@@ -86,25 +85,6 @@ if(isset($resultado)){
         <label for='contrato'>N° Contrato</label>
         <input type='number' class='form-control' id='contrato' name='contrato' required=''>
         </div>";
-
-        $form_status_relatorio = "<div class='form-group col-md-3'>
-        <label for='status_relatorio'>Status do relatório</label>
-        <select id='status_relatorio' class='form-control' name='status_relatorio' required=''>
-          <option selected>Selecione...</option>
-          <option value='entregue'>Entregue</option>
-          <option value='pendente'>Pendente</option>
-        </select>
-        </div>";
-
-        $form_classificacao_relatorio = "<div class='form-group col-md-4'>
-        <label for='classificacao_relatorio'>Relatório</label>
-        <select id='classificacao_relatorio' class='form-control' name='classificacao_relatorio' required=''>
-          <option selected>Selecione...</option>
-          <option value='nao contem'>Não contém</option>
-          <option value='parcial'>Parcial</option>
-          <option value='final'>Final</option>
-        </select>
-      </div>";
         
         $form_num_doc_convenio = "<div class='form-group col-md-3'>
         <label for='convenio'>N° Convênio</label>
@@ -122,8 +102,6 @@ if(isset($resultado)){
         echo $form_matricula_aluno;
         echo $form_contrato;
         echo $form_num_doc_convenio;
-        echo $form_classificacao_relatorio;
-        echo $form_status_relatorio;
         echo $form_footer;
     }
 }

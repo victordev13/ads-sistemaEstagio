@@ -83,7 +83,7 @@ if(isset($resultado)){
         $_SESSION['aluno_id'] = $resultado[0];
         $nome = $resultado[1];
         $matricula = $resultado[2];
-        $curso = $resultado[3];
+        $curso = $resultado[4];
 
         $table_head = "<table class='table table-striped mt-2'>
         <thead>

@@ -22,6 +22,7 @@ function loginAluno($cpf, $senha){
 		$_SESSION['logado'] = true;
 		$_SESSION['nivelUsuario'] = 0;
 		$_SESSION['login_aluno_id'] = $dados[0];
+		$_SESSION['aluno_id'] = $dados[3];
 		$_SESSION['cpf'] = $dados[1];
 		$_SESSION['senha'] = $dados[2];
 		header("Location: aluno/painel.php");
@@ -106,7 +107,7 @@ function buscarAluno($matricula){
 
 	global $connect;
 	//setar matricula como unique no banco de dados
-	$sql = "SELECT * FROM nucleo_estagio.aluno, nucleo_estagio.login_aluno WHERE matricula LIKE '$matricula';";
+	$sql = "SELECT a.aluno_id, a.nome, a.matricula, a.curso_id, l.cpf, l.senha, c.curso FROM aluno A, login_aluno L INNER JOIN curso C ON c.curso_id = curso_id WHERE matricula = '$matricula'";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
 		while($row_aluno = mysqli_fetch_array($resultado)){
@@ -114,6 +115,7 @@ function buscarAluno($matricula){
 			$aluno[] = $row_aluno['nome'];
 			$aluno[] = $row_aluno['matricula'];
 			$aluno[]= $row_aluno['curso_id'];
+			$aluno[]= $row_aluno['curso'];
 			$aluno[]= $row_aluno['cpf'];
 			$aluno[]= $row_aluno['senha'];
 		}
@@ -123,7 +125,6 @@ function buscarAluno($matricula){
 	}else{
 		return false;
 	}
-	
 }
 
 function updateAluno($nome, $curso, $matricula, $aluno_id){
@@ -189,11 +190,38 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}
 }
 
+function somaHoras($aluno_id){
 
-function mostraQtdAlunos(){
-	echo 20;
+	global $connect;
+
+	$sql = "CALL soma_horas('$aluno_id');";
+
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		$dados = mysqli_fetch_array($resultado);
+		
+		return $dados['0']."h";
+	}else{
+		return false;
+	}
 }
 
-function mostraQtdFuncionarios(){
-	echo 20;
+
+function horasRestantes($aluno_id){
+
+	global $connect;
+	
+	$sql ="SELECT total_h_complement FROM aluno INNER JOIN curso ON aluno.curso_id=curso.curso_id WHERE aluno.aluno_id='$aluno_id';" ;
+
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		$dados = mysqli_fetch_array($resultado);
+		
+		return $dados['0']."h";
+	}else{
+		return false;
+	}
+
 }

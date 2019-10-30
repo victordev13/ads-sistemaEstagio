@@ -1,6 +1,7 @@
 <?php
 require_once'header.php';
 require_once'../functions.php';
+require_once'../db/procedures.php';
 
 ?>
 
@@ -25,13 +26,7 @@ if(isset($_SESSION['sucesso'])){
             <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">Alunos cadastrados</div>
                 <div class="card-body">
-                    <h3 class="display-4"><?php mostraQtdAlunos(); ?></h3>
-                </div>
-            </div>
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Funcionário cadastrados</div>
-                <div class="card-body">
-                    <h3 class="display-4"><?php echo 20; ?></h3>
+                    <h3 class="display-4"><?php echo qtdAlunos(); ?></h3>
                 </div>
             </div>
     </div>
