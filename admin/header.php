@@ -52,7 +52,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="cadastro_aluno.php">Aluno</a>
               <a class="dropdown-item" href="cadastro_estagio.php">Estágio</a>
-              <a class="dropdown-item" href="#">Relatório de estágio</a>
+              <a class="dropdown-item" href="cadastro_relatorio_estagio.php">Relatório de estágio</a>
               <a class="dropdown-item" href="cadastro_horas_complementares.php">Horas complementares</a>
               <a class="dropdown-item" href="cadastro_funcionario.php">Funcionário</a>
             </div>

@@ -1,7 +1,8 @@
 <?php
     require_once 'header.php';
     require_once '../db/db_connect.php';
-    require_once '../classes/horas_complementares.class.php';
+    require_once '../classes/aluno.class.php';
+    require_once '../classes/relatorio_estagio.class.php';
 
     if(isset($_POST)){
         if(isset($_POST['matricula'])){
@@ -13,19 +14,19 @@
             }
         }
 
-        if(isset($_POST['aluno_id']) && isset($_POST['evento']) && isset($_POST['entidade']) && isset($_POST['data_ocorrencia']) && isset($_POST['carga_horaria'])){
+        if(isset($_POST['aluno_id']) && isset($_POST['classificacao']) && isset($_POST['status']) && isset($_POST['data_entrega'])){
           $aluno_id = mysqli_real_escape_string($connect, $_POST['aluno_id']);;
-          $evento = mysqli_real_escape_string($connect, $_POST['evento']);
-          $entidade = mysqli_real_escape_string($connect, $_POST['entidade']);
-          $data_ocorrencia = mysqli_real_escape_string($connect, $_POST['data_ocorrencia']); 
-          $carga_horaria = mysqli_real_escape_string($connect, $_POST['carga_horaria']);
+          $classificacao = mysqli_real_escape_string($connect, $_POST['classificacao']);
+          $status = mysqli_real_escape_string($connect, $_POST['status']);
+          $data_entrega = mysqli_real_escape_string($connect, $_POST['data_entrega']); 
 
-          $horas_complementares = new HorasComplementares($aluno_id, $evento, $entidade, $data_ocorrencia, $carga_horaria);
-          if($horas_complementares->cadastrarHorasComplementares()){
-            $sucesso = "Horas cadastradas com sucesso!";
+          $estagio_id = buscarIdEstagio($aluno_id);
+          $relatorio_estagio = new RelatorioEstagio($estagio_id, $classificacao, $status, $data_entrega);
+          
+          if($relatorio_estagio->cadastrarRelatorioEstagio()){
+            $sucesso = "Relatório cadastrado com sucesso!";
           }else{
-              var_dump($horas_complementares->cadastrarHorasComplementares());
-            $erro = "Erro ao cadastrar Horas!";
+            $erro = "Erro ao cadastrar Relatório!";
           }
         }
     }
@@ -33,7 +34,7 @@
 
 
 <div class="container mt-3 col-md-6">
-<h2>Cadastrar Horas Complementares</h2>
+<h2>Cadastrar Relatório de Estágio</h2>
 <?php
 
  if(!empty($erro)){
@@ -82,26 +83,28 @@ if(isset($resultado)){
         <input type='text' class='form-control' id='matricula' name='matricula' required='' value='".$matricula."' disabled=''>
         </div>";
 
-        $form_evento = "<div class='form-group col-md-6'>
-        <label for='evento'>Título do Evento</label>
-        <input type='text' class='form-control' id='evento' name='evento' required=''>
+        $form_classificacao = "<div class='form-group col-md-5'>
+        <label for='classificacao'>Classificação do Relatório</label>
+        <select class='form-control form-control-sm' id='classificacao' name='classificacao' required=''>
+            <option value='Parcial' selected>Parcial</option>
+            <option value='Final'>Final</option>
+        </select>
         </div>";
 
-        $form_entidade = "<div class='form-group col-md-6'>
-        <label for='entidade'>Entidade Responsável</label>
-        <input type='text' class='form-control' id='entidade' name='entidade' required=''>
+        $form_status = "<div class='form-group col-md-4'>
+        <label for='status'>Status</label>
+        <select class='form-control form-control-sm' id='status' name='status' required=''>
+            <option value='0' selected>Aluno</option>
+            <option value='1'>Administrador</option>
+        </select>
         </div>";
 
-        $form_data_ocorrencia = "<div class='form-group col-md-3'>
-        <label for='data_ocorrencia'>Data de ocorrência</label>
-        <input type='date' class='form-control' id='data_ocorrencia' name='data_ocorrencia' required=''>
+        $data_atual = date('Y-m-d');
+        $form_data_entrega = "<div class='form-group col-md-3'>
+        <label for='data_entrega'>Data de entrega</label>
+        <input type='date' class='form-control' id='data_entrega' name='data_entrega' required='' value='".$data_atual."'>
         </div>";
-        
-        $form_carga_horaria = "<div class='form-group col-md-3'>
-        <label for='carga_horaria'>Carga horária</label>
-        <input type='number' class='form-control' id='carga_horaria' name='carga_horaria' min='1' max='500' required=''>
-      </div>";
-        
+
         $form_footer = "</div>
         <button type='submit' class='btn btn-green-fvc'>Cadastrar</button>
       </form>
@@ -111,10 +114,9 @@ if(isset($resultado)){
         echo $form_nome_aluno;
         echo $form_hidden_aluno_id;
         echo $form_matricula_aluno;
-        echo $form_evento;
-        echo $form_entidade;
-        echo $form_data_ocorrencia;
-        echo $form_carga_horaria;
+        echo $form_classificacao;
+        echo $form_status;
+        echo $form_data_entrega;
         echo $form_footer;
     }
 }

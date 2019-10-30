@@ -1,7 +1,5 @@
 <?php
 
-
-
 function qtdFuncionarios(){
 
 	global $connect;
@@ -34,6 +32,24 @@ function qtdAlunos(){
 		return false;
 	}
 }
+
+function somaHoras($aluno_id){
+
+	global $connect;
+
+	$sql = "CALL soma_horas('$aluno_id');";
+
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		$dados = mysqli_fetch_array($resultado);
+		
+		return $dados['0']."h";
+	}else{
+		return false;
+	}
+}
+
 
 
 

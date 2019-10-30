@@ -1,9 +1,9 @@
 <?php
     require_once 'header.php';
     require_once '../db/db_connect.php';
-    require_once '../classes/aluno.class.php';
+
 if(isset($_SESSION['usuario'])){
-  $dados = buscarPerfilFuncionario($_SESSION['usuario']);  
+  $dados = buscarPerfilFuncionario($_SESSION['funcionario_funcionario_id']);  
 }
 
 if(isset($_POST['editar'])){
@@ -34,7 +34,7 @@ if(isset($_POST['editar'])){
     </div>
     <div class="form-group col">
       <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $dados['2']; ?>" minlength=11 maxlength=11 required="">
+      <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $dados['2']; ?>" required="">
     </div>    
   </div>
   <div class="form-row">

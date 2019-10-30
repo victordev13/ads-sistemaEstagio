@@ -32,6 +32,7 @@ function loginAluno($cpf, $senha){
 		header('Location: index.php');
 	}
 }
+
 function loginAdministrador($usuario, $senha){
 	global $connect;
 	$sql = "SELECT * FROM login_funcionario WHERE usuario = '$usuario' AND senha = '$senha'";
@@ -107,7 +108,7 @@ function buscarAluno($matricula){
 
 	global $connect;
 	//setar matricula como unique no banco de dados
-	$sql = "SELECT a.aluno_id, a.nome, a.matricula, a.curso_id, l.cpf, l.senha, c.curso FROM aluno A, login_aluno L INNER JOIN curso C ON c.curso_id = curso_id WHERE matricula = '$matricula'";
+	$sql = " SELECT a.aluno_id, a.nome, a.matricula, a.curso_id, l.cpf, l.senha, c.curso FROM aluno A INNER JOIN login_aluno L ON l.aluno_aluno_id = a.aluno_id INNER JOIN curso C ON c.curso_id = a.curso_id WHERE matricula = '$matricula'";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
 		while($row_aluno = mysqli_fetch_array($resultado)){
@@ -122,6 +123,22 @@ function buscarAluno($matricula){
 		if(!empty($aluno)){
 			return $aluno;
 		}
+	}else{
+		return false;
+	}
+}
+
+function buscarIdEstagio($aluno_id){
+
+	global $connect;
+
+	$sql = " SELECT estagio_id FROM estagio WHERE aluno_aluno_id = '$aluno_id';";
+
+	$resultado = mysqli_query($connect, $sql);
+
+	if($resultado){
+		$dados = mysqli_fetch_array($resultado);
+		return $dados['0'];
 	}else{
 		return false;
 	}
@@ -151,11 +168,11 @@ function excluirAluno($aluno_id){
 	}
 }
 
-function buscarPerfilFuncionario($usuario){
+function buscarPerfilFuncionario($funcionario_id){
 
 	global $connect;
 
-	$sql = "SELECT * FROM nucleo_estagio.funcionario, nucleo_estagio.login_funcionario WHERE login_funcionario.usuario LIKE '$usuario';";
+	$sql = "SELECT * FROM funcionario F INNER JOIN login_funcionario L ON f.funcionario_id = l.funcionario_funcionario_id WHERE l.funcionario_funcionario_id = '$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
 	
 	if($resultado){
@@ -190,22 +207,6 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}
 }
 
-function somaHoras($aluno_id){
-
-	global $connect;
-
-	$sql = "CALL soma_horas('$aluno_id');";
-
-	$resultado = mysqli_query($connect, $sql);
-
-	if($resultado){
-		$dados = mysqli_fetch_array($resultado);
-		
-		return $dados['0']."h";
-	}else{
-		return false;
-	}
-}
 
 
 function horasRestantes($aluno_id){
