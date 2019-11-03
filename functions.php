@@ -207,20 +207,42 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}
 }
 
-
-
+//FUNÇÃO DEVESER REVISADA E ALTERADA!
 function horasRestantes($aluno_id){
 
 	global $connect;
-	
-	$sql ="SELECT total_h_complement FROM aluno INNER JOIN curso ON aluno.curso_id=curso.curso_id WHERE aluno.aluno_id='$aluno_id';" ;
+
+	$sql ="SELECT total_h_complement FROM curso WHERE curso_id = '$aluno_id'" ;
 
 	$resultado = mysqli_query($connect, $sql);
-
+	
 	if($resultado){
-		$dados = mysqli_fetch_array($resultado);
-		
-		return $dados['0']."h";
+		$dados = mysqli_fetch_row($resultado);
+		$dados = $dados - $horasCompletas;
+		return $dados;
+	}else{
+		return "erro";
+	}
+}
+
+function buscaEstagioCadastrado($aluno_id){
+	global $connect;
+
+	$sql = "SELECT estagio_id, contrato, num_doc_convenio, data_registro, count(relatorio_de_estagi_id) AS qtd_relatorios FROM estagio INNER JOIN relatorio_de_estagio ON estagio_id = estagio_estagio_id WHERE aluno_aluno_id = '$aluno_id';";
+	$resultado = mysqli_query($connect, $sql);
+	
+	if($resultado){
+		while($row = mysqli_fetch_array($resultado)){
+			$estagio[] = $row['contrato'];
+			$estagio[] = $row['num_doc_convenio'];
+			$estagio[] = $row['data_registro'];
+			$estagio[] = $row['qtd_relatorios'];
+		}
+		if(!$estagio[1]==null){
+			return $estagio;
+		}else{
+			return false;
+		}
 	}else{
 		return false;
 	}

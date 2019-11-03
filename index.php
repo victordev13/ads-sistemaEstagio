@@ -55,7 +55,7 @@
                             }
 
                             if(isset($_SESSION['logout'])){
-                                    echo "<div class='alert alert-success alerta-sm' role='alert'>";
+                                    echo "<div class='alert alert-warning alerta-sm' role='alert'>";
                                     echo "Logout efetuado com sucesso!";
                                     echo "</div>";
                                     session_destroy();

@@ -43,8 +43,12 @@ function somaHoras($aluno_id){
 
 	if($resultado){
 		$dados = mysqli_fetch_array($resultado);
+		if($dados['0']>0){
+			return $dados['0']."h";
+		}else{
+			return false;
+		}
 		
-		return $dados['0']."h";
 	}else{
 		return false;
 	}

@@ -25,8 +25,8 @@
           
           if($relatorio_estagio->cadastrarRelatorioEstagio()){
             $sucesso = "Relatório cadastrado com sucesso!";
-          }else{
-            $erro = "Erro ao cadastrar Relatório!";
+          }else{    
+            $erro = "Erro ao cadastrar Relatório!<br>Verifique se o aluno possui estágio cadastrado.";
           }
         }
     }
@@ -86,7 +86,8 @@ if(isset($resultado)){
         $form_classificacao = "<div class='form-group col-md-5'>
         <label for='classificacao'>Classificação do Relatório</label>
         <select class='form-control form-control-sm' id='classificacao' name='classificacao' required=''>
-            <option value='Parcial' selected>Parcial</option>
+            <option selected>Selecione...</option>
+            <option value='Parcial'>Parcial</option>
             <option value='Final'>Final</option>
         </select>
         </div>";
@@ -94,8 +95,9 @@ if(isset($resultado)){
         $form_status = "<div class='form-group col-md-4'>
         <label for='status'>Status</label>
         <select class='form-control form-control-sm' id='status' name='status' required=''>
-            <option value='0' selected>Aluno</option>
-            <option value='1'>Administrador</option>
+            <option selected>Selecione...</option>
+            <option value='Entregue'>Entregue</option>
+            <option value='Não entregue'>Não entregue</option>
         </select>
         </div>";
 

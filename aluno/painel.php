@@ -17,13 +17,14 @@
                     <h3 class="display-4"><?php echo $horasCompletas ?></h3>
                 </div>
             </div>
-            <!-- <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+             <!-- 
+             <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
                 <div class="card-header">Horas complementares totais</div>
                 <div class="card-body">
                     <h3 class="display-4"><?php echo $horasRestantes ?></h3>
                 </div>
-
-            -->
+-->
+            
             </div>
     </div>
 </div>
