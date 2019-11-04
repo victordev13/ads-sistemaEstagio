@@ -7,6 +7,7 @@
     if(isset($_POST)){
         if(isset($_POST['matricula'])){
             $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
+            $matricula = str_pad($matricula, 9, "0", STR_PAD_LEFT);
             $resultado = buscarAluno($matricula);
             
             if($resultado == false){
