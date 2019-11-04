@@ -33,6 +33,17 @@ CREATE TABLE nucleo_estagio.estagio (
     FOREIGN KEY (aluno_aluno_id) REFERENCES nucleo_estagio.aluno (aluno_id)
 );
 
+CREATE TABLE nucleo_estagio.relatorio_de_estagio (
+	relatorio_de_estagi_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    classificacao VARCHAR(45) NOT NULL,
+    status_relatorio VARCHAR(45) NOT NULL,
+    data_entrega DATE NOT NULL,
+    estagio_estagio_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (relatorio_de_estagi_id),
+    FOREIGN KEY (estagio_estagio_id) REFERENCES nucleo_estagio.estagio (estagio_id)
+);
+
+
 CREATE TABLE nucleo_estagio.horas_complementares (
 	horas_complementares_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     evento VARCHAR(50) NOT NULL,
