@@ -19,6 +19,7 @@ CREATE TABLE nucleo_estagio.aluno (
     curso_id INT UNSIGNED NOT NULL,
     PRIMARY KEY(aluno_id),
     FOREIGN KEY (curso_id) REFERENCES nucleo_estagio.curso (curso_id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE nucleo_estagio.estagio (
@@ -31,6 +32,7 @@ CREATE TABLE nucleo_estagio.estagio (
     aluno_aluno_id INT UNSIGNED NOT NULL,
 	PRIMARY KEY (estagio_id),
     FOREIGN KEY (aluno_aluno_id) REFERENCES nucleo_estagio.aluno (aluno_id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE nucleo_estagio.relatorio_de_estagio (
@@ -41,6 +43,7 @@ CREATE TABLE nucleo_estagio.relatorio_de_estagio (
     estagio_estagio_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (relatorio_de_estagi_id),
     FOREIGN KEY (estagio_estagio_id) REFERENCES nucleo_estagio.estagio (estagio_id)
+    ON DELETE CASCADE
 );
 
 
@@ -53,6 +56,7 @@ CREATE TABLE nucleo_estagio.horas_complementares (
     aluno_aluno_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (horas_complementares_id),
     FOREIGN KEY (aluno_aluno_id) REFERENCES nucleo_estagio.aluno(aluno_id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE nucleo_estagio.login_aluno (
@@ -62,6 +66,7 @@ CREATE TABLE nucleo_estagio.login_aluno (
     aluno_aluno_id INT UNSIGNED NOT NULL ,
 	PRIMARY KEY (login_aluno_id),
     FOREIGN KEY (aluno_aluno_id) REFERENCES nucleo_estagio.aluno(aluno_id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE nucleo_estagio.funcionario(
@@ -79,6 +84,7 @@ CREATE TABLE nucleo_estagio.login_funcionario (
 	funcionario_funcionario_id INT UNSIGNED NOT NULL,
     PRIMARY KEY (login_funcionario_id),
     FOREIGN KEY (funcionario_funcionario_id) REFERENCES nucleo_estagio.funcionario (funcionario_id)
+    ON DELETE CASCADE
 );
 
 

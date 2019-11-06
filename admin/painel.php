@@ -22,6 +22,7 @@ if(isset($_SESSION['sucesso'])){
 }
 
 ?>
+
     <div class="card-deck">
             <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">Alunos cadastrados</div>
@@ -31,8 +32,6 @@ if(isset($_SESSION['sucesso'])){
             </div>
     </div>
 </div>
-
-
 
 <?php  
     require_once'footer.php'; 

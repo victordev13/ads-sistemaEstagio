@@ -20,8 +20,7 @@
 </head>
 <body class="bg-green">
     <div class="row justify-content-center align-items-center" style="height:100vh; width: 100%">
-        <div class="col-md-3">
-            <div class="card">
+            <div class="card login" style="width: 19rem; min-width: 250px!important;">
                 <div class="card-body"> 
                 <img src="img/fvclogo.png" class="logo-form">
                     <form action="login.php" method="POST" id="formLogin">
@@ -85,6 +84,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </body>
 </html>

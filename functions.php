@@ -158,7 +158,9 @@ function updateAluno($nome, $curso, $matricula, $aluno_id){
 function excluirAluno($aluno_id){
 	global $connect; 
 
-	$sql = "DELETE FROM nucleo_estagio.aluno WHERE aluno_id='$aluno_id'";
+	$sql = "DELETE FROM login_aluno WHERE aluno_aluno_id='$aluno_id';";
+	$resultado = mysqli_query($connect, $sql);
+	$sql = "DELETE FROM aluno WHERE aluno_id='$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
 
 	if($resultado){

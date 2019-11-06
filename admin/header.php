@@ -20,9 +20,6 @@
     $(document).ready(function(){
   	     $('#cpf').mask('000.000.000-00', {reverse: true});
 	  });
-    $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-    })
     </script>
 </head>
 <body>
@@ -38,18 +35,18 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="Consultar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Consultar
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="Consultar">
               <a class="dropdown-item" href="busca_aluno.php">Aluno</a>
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="Cadastrar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Cadastrar
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="Cadastrar">
               <a class="dropdown-item" href="cadastro_aluno.php">Aluno</a>
               <a class="dropdown-item" href="cadastro_estagio.php">Estágio</a>
               <a class="dropdown-item" href="cadastro_relatorio_estagio.php">Relatório de estágio</a>
@@ -58,8 +55,8 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meu perfil</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="nav-link dropdown-toggle" href="#" id="Perfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Meu perfil</a>
+        <div class="dropdown-menu" aria-labelledby="Perfil">
             <a class="dropdown-item" href="editar_perfil.php">Editar</a>
             <a class="dropdown-item" href="alterar_senha.php">Alterar senha</a>
             <a class="dropdown-item" href="../logout.php">Sair</a>

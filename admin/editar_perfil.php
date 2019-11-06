@@ -6,7 +6,7 @@ if(isset($_SESSION['usuario'])){
   $dados = buscarPerfilFuncionario($_SESSION['funcionario_funcionario_id']);  
 }
 
-if(isset($_POST['editar'])){
+if(isset($_POST['salvar'])){
   if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario'])){
     
     $nome = mysqli_real_escape_string($connect, $_POST['nome']);
@@ -43,7 +43,7 @@ if(isset($_POST['editar'])){
       <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $dados['3']; ?>" required="">
     </div>
   </div>
-  <button type="submit" class="btn btn-green-fvc" name="editar">Editar</button>
+  <button type="submit" class="btn btn-green-fvc" name="salvar">Salvar</button>
 </form>
 </div>
 
