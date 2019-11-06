@@ -46,7 +46,6 @@ CREATE TABLE nucleo_estagio.relatorio_de_estagio (
     ON DELETE CASCADE
 );
 
-
 CREATE TABLE nucleo_estagio.horas_complementares (
 	horas_complementares_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     evento VARCHAR(50) NOT NULL,
@@ -107,7 +106,6 @@ INSERT INTO nucleo_estagio.curso (curso, total_h_complement, total_h_estagio) VA
 INSERT INTO nucleo_estagio.curso (curso, total_h_complement, total_h_estagio) VALUES ('Pedagogia', 200, 400);
 INSERT INTO nucleo_estagio.curso (curso, total_h_complement, total_h_estagio) VALUES ('Psicologia', 360, 650);
 
-
 /*Função para contar a quantidade de alunos cadastrados*/
 USE nucleo_estagio;
 DELIMITER $
@@ -120,7 +118,6 @@ DELIMITER ;
 /*CALL qtd_alunos_cadast();*/ #ESTA É A CHAMADA DA FUNÇÃO ACIMA, ESTÁ COMENTADA SOMENTE PARA NÃO RODAR JUNTO AO CÓDIGO NA HORA DE CRIAR O BANCO.
 
 
-
 /*Função para contar a quantidade de funcionários cadastrados*/
 DELIMITER $
 CREATE PROCEDURE qtd_funcio_cadast()
@@ -129,9 +126,7 @@ BEGIN
 END $
 DELIMITER ;
 
-
 /*CALL qtd_funcio_cadast();*/ #ESTA É A CHAMADA DA FUNÇÃO ACIMA, ESTÁ COMENTADA SOMENTE PARA NÃO RODAR JUNTO AO CÓDIGO NA HORA DE CRIAR O BANCO.
-
 
 /*Função para calcular a quantidade de horas complementares*/
 DELIMITER $
