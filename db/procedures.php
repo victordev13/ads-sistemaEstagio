@@ -64,14 +64,14 @@ function horasRestantes($aluno_id, $horasCompletas){
 
 	$connect = Conexao();
 
-	$sql = "CALL horas_totais('$aluno_id');";
+	$sql = "SELECT total_h_complement FROM aluno INNER JOIN curso ON aluno.curso_id=curso.curso_id WHERE aluno.aluno_id = '$aluno_id';";
 
 	$resultado = mysqli_query($connect, $sql);
 
 	if($resultado){
 		$dados = mysqli_fetch_array($resultado);
-		if($dados['0']>0){
-			$total = $dados['0'] - intval($horasCompletas);
+		$total = $dados['0'] - intval($horasCompletas);
+		if($total > 0){
 			return $total."h";
 		}else{
 			return 0;
