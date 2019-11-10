@@ -16,7 +16,7 @@ class Estagio
 
 	function cadastrarEstagio(){
 		
-		global $connect;
+		$connect = Conexao();
 		
 		$sql = "INSERT INTO estagio (`contrato`,`num_doc_convenio`, `data_registro`, `aluno_aluno_id`) VALUES ('$this->contrato', '$this->convenio', CURDATE(), '$this->aluno_id')";
 		

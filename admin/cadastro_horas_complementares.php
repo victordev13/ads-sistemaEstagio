@@ -5,7 +5,7 @@
 
     if(isset($_POST)){
         if(isset($_POST['matricula'])){
-            $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
+            $matricula = tratarString($_POST['matricula']);
             $matricula = str_pad($matricula, 9, "0", STR_PAD_LEFT);
             $resultado = buscarAluno($matricula);
             
@@ -15,11 +15,11 @@
         }
 
         if(isset($_POST['aluno_id']) && isset($_POST['evento']) && isset($_POST['entidade']) && isset($_POST['data_ocorrencia']) && isset($_POST['carga_horaria'])){
-          $aluno_id = mysqli_real_escape_string($connect, $_POST['aluno_id']);;
-          $evento = mysqli_real_escape_string($connect, $_POST['evento']);
-          $entidade = mysqli_real_escape_string($connect, $_POST['entidade']);
-          $data_ocorrencia = mysqli_real_escape_string($connect, $_POST['data_ocorrencia']); 
-          $carga_horaria = mysqli_real_escape_string($connect, $_POST['carga_horaria']);
+          $aluno_id = tratarString($_POST['aluno_id']);;
+          $evento = tratarString($_POST['evento']);
+          $entidade = tratarString($_POST['entidade']);
+          $data_ocorrencia = tratarString($_POST['data_ocorrencia']); 
+          $carga_horaria = tratarString($_POST['carga_horaria']);
 
           $horas_complementares = new HorasComplementares($aluno_id, $evento, $entidade, $data_ocorrencia, $carga_horaria);
           if($horas_complementares->cadastrarHorasComplementares()){
@@ -79,7 +79,7 @@ if(isset($resultado)){
         </div>";
 
         $form_matricula_aluno = "<div class='form-group col-md-6'>
-        <label for='nome'>Matricula</label>
+        <label for='nome'>Matrícula</label>
         <input type='text' class='form-control' id='matricula' name='matricula' required='' value='".$matricula."' disabled=''>
         </div>";
 

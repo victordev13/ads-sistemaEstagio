@@ -5,11 +5,11 @@
 
     if(isset($_POST)){
         if(isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['curso']) && isset($_POST['matricula'])){
-            $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-            $cpf = mysqli_real_escape_string($connect, $_POST['cpf']);
+            $nome = tratarString($_POST['nome']);
+            $cpf = tratarString($_POST['cpf']);
             $cpf = formatarCPF($cpf);
-            $curso = mysqli_real_escape_string($connect, $_POST['curso']);
-            $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
+            $curso = tratarString($_POST['curso']);
+            $matricula = tratarString($_POST['matricula']);
             $matricula = str_pad($matricula, 9, "0", STR_PAD_LEFT);
 
             $aluno = new Aluno($nome, $cpf, $matricula, $curso);
@@ -76,7 +76,7 @@ if(!empty($sucesso)){
       </select>
     </div>
     <div class="form-group col-md-4">
-      <label for="matricula">Matricula</label>
+      <label for="matricula">Matrícula</label>
       <input type="number" class="form-control" id="matricula" name="matricula" placeholder="Matricula" required="">
     </div>
   </div>

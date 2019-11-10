@@ -2,11 +2,12 @@
 session_start();
 require_once'db/db_connect.php';
 require_once'functions.php';
+$connect = Conexao();
 
 if($_POST['cpf'] || $_POST['usuario'] && $_POST['senha']){
 	
 	$tipoUsuario = $_POST['tipoUsuario'];
-
+	
 	if($tipoUsuario == 0){
 
 		$cpf = mysqli_real_escape_string($connect, $_POST['cpf']);
@@ -30,5 +31,7 @@ if($_POST['cpf'] || $_POST['usuario'] && $_POST['senha']){
 	$_SESSION['erroLoginUsuario'] = 1;
 	header('Location: index.php');
 }
+
+FecharConexao($connect);
 
 ?>

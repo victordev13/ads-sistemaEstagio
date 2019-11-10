@@ -10,9 +10,15 @@ function formatarCPF($valor){
 	return $valor;
 }
 
+function tratarString($string){
+	$connect = Conexao();
+	$stringTratada = mysqli_real_escape_string($connect, $string);
+	return $stringTratada;
+	FecharConexao($connect);
+}
 function loginAluno($cpf, $senha){
 	
- 	global $connect;
+ 	$connect = Conexao();
 	$sql = "SELECT * FROM login_aluno WHERE cpf = '$cpf' AND senha = '$senha'";
 
 	$res_query = mysqli_query($connect, $sql);
@@ -31,10 +37,11 @@ function loginAluno($cpf, $senha){
 		$_SESSION['erroLoginUsuario'] = 0;
 		header('Location: index.php');
 	}
+	FecharConexao($connect);
 }
 
 function loginAdministrador($usuario, $senha){
-	global $connect;
+	$connect = Conexao();
 	$sql = "SELECT * FROM login_funcionario WHERE usuario = '$usuario' AND senha = '$senha'";
 	$res_query = mysqli_query($connect, $sql);
 
@@ -53,6 +60,7 @@ function loginAdministrador($usuario, $senha){
 		$_SESSION['erroLoginUsuario'] = 1;
 		header('Location: index.php');
 	}
+	FecharConexao($connect);
 }
 
 function ValidaSessao($sessao, $nivelUsuario){
@@ -71,7 +79,7 @@ function ValidaSessao($sessao, $nivelUsuario){
 
 function Cursos(){
 
-	global $connect;
+	$connect = Conexao();
 	
 	$sql = "SELECT curso FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
@@ -84,12 +92,13 @@ function Cursos(){
 	}else{
 		return false;
 	}
+	FecharConexao($connect);
 }
 
 
 function CursosId(){
 
-	global $connect;
+	$connect = Conexao();;
 	
 	$sql = "SELECT curso_id FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
@@ -106,7 +115,7 @@ function CursosId(){
 
 function buscarAluno($matricula){
 
-	global $connect;
+	$connect = Conexao();;
 	//setar matricula como unique no banco de dados
 	$sql = " SELECT a.aluno_id, a.nome, a.matricula, a.curso_id, l.cpf, l.senha, c.curso FROM aluno A INNER JOIN login_aluno L ON l.aluno_aluno_id = a.aluno_id INNER JOIN curso C ON c.curso_id = a.curso_id WHERE matricula = '$matricula'";
 	$resultado = mysqli_query($connect, $sql);
@@ -130,7 +139,7 @@ function buscarAluno($matricula){
 
 function buscarIdEstagio($aluno_id){
 
-	global $connect;
+	$connect = Conexao();
 
 	$sql = " SELECT estagio_id FROM estagio WHERE aluno_aluno_id = '$aluno_id';";
 
@@ -145,7 +154,8 @@ function buscarIdEstagio($aluno_id){
 }
 
 function updateAluno($nome, $curso, $matricula, $aluno_id){
-	global $connect; 
+	$connect = Conexao();
+
 	$sql = "UPDATE nucleo_estagio.aluno SET nome='$nome', matricula='$matricula', curso_id='$curso' WHERE aluno_id='$aluno_id'";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
@@ -153,10 +163,11 @@ function updateAluno($nome, $curso, $matricula, $aluno_id){
 	}else{ 
 		return false;
 	}
+	FecharConexao($connect);
 }
 
 function excluirAluno($aluno_id){
-	global $connect; 
+	$connect = Conexao();
 
 	$sql = "DELETE FROM login_aluno WHERE aluno_aluno_id='$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
@@ -168,11 +179,12 @@ function excluirAluno($aluno_id){
 	}else{ 
 		return false;
 	}
+	FecharConexao($connect);
 }
 
 function buscarPerfilFuncionario($funcionario_id){
 
-	global $connect;
+	$connect = Conexao();
 
 	$sql = "SELECT * FROM funcionario F INNER JOIN login_funcionario L ON f.funcionario_id = l.funcionario_funcionario_id WHERE l.funcionario_funcionario_id = '$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
@@ -190,11 +202,12 @@ function buscarPerfilFuncionario($funcionario_id){
 	}else{
 		return false;
 	}
+	FecharConexao($connect);
 }
 
 
 function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
-	global $connect; 
+	$connect = Conexao();
 
 	$sql = "UPDATE funcionario SET nome='$nome', email='$email' WHERE funcionario_id='$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
@@ -207,28 +220,11 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}else{ 
 		return false;
 	}
-}
-
-//FUNÇÃO DEVESER REVISADA E ALTERADA!
-function horasRestantes($aluno_id){
-
-	global $connect;
-
-	$sql ="SELECT total_h_complement FROM curso WHERE curso_id = '$aluno_id'" ;
-
-	$resultado = mysqli_query($connect, $sql);
-	
-	if($resultado){
-		$dados = mysqli_fetch_row($resultado);
-		$dados = $dados - $horasCompletas;
-		return $dados;
-	}else{
-		return "erro";
-	}
+	FecharConexao($connect);
 }
 
 function buscaEstagioCadastrado($aluno_id){
-	global $connect;
+	$connect = Conexao();
 
 	$sql = "SELECT estagio_id, contrato, num_doc_convenio, data_registro, count(relatorio_de_estagi_id) AS qtd_relatorios FROM estagio INNER JOIN relatorio_de_estagio ON estagio_id = estagio_estagio_id WHERE aluno_aluno_id = '$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
@@ -248,5 +244,28 @@ function buscaEstagioCadastrado($aluno_id){
 	}else{
 		return false;
 	}
+	FecharConexao($connect);
+}
+
+function enviarEmail(){
+
+	ini_set('display_errors', 1);
+
+	error_reporting(E_ALL);
+
+	$from = "testing @ yourdomain";
+
+	$to = "vtrcarvalho.13@gmail.com";
+
+	$subject = "Verificando o correio do PHP";
+
+	$message = "O correio do PHP funciona bem";
+
+	$headers = "De:". $from;
+
+	mail($to, $subject, $message, $headers);
+
+	echo "A mensagem de e-mail foi enviada.";
+
 
 }

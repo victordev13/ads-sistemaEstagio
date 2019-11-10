@@ -9,9 +9,9 @@ if(isset($_SESSION['usuario'])){
 if(isset($_POST['salvar'])){
   if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario'])){
     
-    $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-    $email = mysqli_real_escape_string($connect, $_POST['email']);
-    $usuario =mysqli_real_escape_string($connect, $_POST['usuario']);
+    $nome = tratarString($_POST['nome']);
+    $email = tratarString($_POST['email']);
+    $usuario =tratarString($_POST['usuario']);
 
     if(updatePerfilFuncionario($nome, $email, $usuario, $dados['0'])){
         $_SESSION['sucesso'] = "Alterado com sucesso!";

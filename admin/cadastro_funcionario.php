@@ -5,10 +5,10 @@
 
     if(isset($_POST)){
         if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario']) && isset($_POST['senha'])){
-            $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-            $email = mysqli_real_escape_string($connect, $_POST['email']);
-            $usuario = mysqli_real_escape_string($connect, $_POST['usuario']);
-            $senha = mysqli_real_escape_string($connect, $_POST['senha']);
+            $nome = tratarString($_POST['nome']);
+            $email = tratarString($_POST['email']);
+            $usuario = tratarString($_POST['usuario']);
+            $senha = tratarString($_POST['senha']);
             $senha = md5($senha);
 
             $funcionario = new Funcionario($nome, $email, $usuario, $senha);

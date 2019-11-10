@@ -12,7 +12,7 @@
 					<?php
 					if(isset($_POST)){
 						if(isset($_POST['senha_antiga']) && isset($_POST['nova_senha']) && isset($_POST['confirma_nova_senha'])){
-							$senhaAntiga = mysqli_real_escape_string($connect, $_POST['senha_antiga']);
+							$senhaAntiga = tratarString($_POST['senha_antiga']);
 							$senhaAntiga = md5($senhaAntiga);
 							
 							$alunoId = $_SESSION['login_aluno_id'];
@@ -22,10 +22,10 @@
 							$dados = mysqli_fetch_array($resultado);
 							$senhaCadastrada = $dados[0];
 
-							$senhaNova = mysqli_real_escape_string($connect, $_POST['nova_senha']);
+							$senhaNova = tratarString($_POST['nova_senha']);
 							$senhaNova = md5($senhaNova);
 				
-							$confirmaSenhaNova = mysqli_real_escape_string($connect, $_POST['confirma_nova_senha']);
+							$confirmaSenhaNova = tratarString($_POST['confirma_nova_senha']);
 							$confirmaSenhaNova = md5($confirmaSenhaNova);
 
 							if($senhaAntiga !=$senhaCadastrada){

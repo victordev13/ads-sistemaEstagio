@@ -5,16 +5,16 @@
 
 if(isset($_GET['m'])){
   
-  $matricula = mysqli_real_escape_string($connect, $_GET['m']);
+  $matricula = tratarString($_GET['m']);
   $dados = buscarAluno($matricula);
 }
 
 if(isset($_POST['editar'])){
   if(isset($_POST['nome']) && isset($_POST['curso']) && isset($_POST['matricula'])){
     
-    $nome = mysqli_real_escape_string($connect, $_POST['nome']);
-    $curso =mysqli_real_escape_string($connect, $_POST['curso']);
-    $matricula =mysqli_real_escape_string($connect, $_POST['matricula']);
+    $nome = tratarString($_POST['nome']);
+    $curso =tratarString($_POST['curso']);
+    $matricula =tratarString($_POST['matricula']);
 
     $dados = buscarAluno($matricula);  
 

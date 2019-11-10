@@ -6,7 +6,7 @@
 
     if(isset($_POST)){
         if(isset($_POST['matricula'])){
-            $matricula = mysqli_real_escape_string($connect, $_POST['matricula']);
+            $matricula = tratarString($_POST['matricula']);
             $matricula = str_pad($matricula, 9, "0", STR_PAD_LEFT);
             $resultado = buscarAluno($matricula);
             
@@ -16,9 +16,9 @@
         }
 
         if(isset($_POST['aluno_id']) && isset($_POST['contrato']) && isset($_POST['convenio'])){
-          $aluno_id = mysqli_real_escape_string($connect, $_POST['aluno_id']);;
-          $contrato = mysqli_real_escape_string($connect, $_POST['contrato']);
-          $convenio = mysqli_real_escape_string($connect, $_POST['convenio']);
+          $aluno_id = tratarString($_POST['aluno_id']);;
+          $contrato = tratarString($_POST['contrato']);
+          $convenio = tratarString($_POST['convenio']);
 
           $estagio = new Estagio($aluno_id, $contrato, $convenio);
 
@@ -78,7 +78,7 @@ if(isset($resultado)){
         </div>";
 
         $form_matricula_aluno = "<div class='form-group col-md-6'>
-        <label for='nome'>Matricula</label>
+        <label for='nome'>Matrícula</label>
         <input type='text' class='form-control' id='matricula' name='matricula' required='' value='".$matricula."' disabled=''>
         </div>";
 

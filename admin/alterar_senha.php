@@ -1,7 +1,8 @@
 <?php
     require_once 'header.php';
     require_once '../db/db_connect.php';
-    require_once '../classes/aluno.class.php';
+	require_once '../classes/aluno.class.php';
+	$connect = Conexao();
 ?>
 <body>
 <div class="row justify-content-center align-items-center" style="height:80vh; width: 100%">
@@ -12,7 +13,7 @@
 					<?php
 					if(isset($_POST)){
 						if(isset($_POST['senha_antiga']) && isset($_POST['nova_senha']) && isset($_POST['confirma_nova_senha'])){
-							$senhaAntiga = mysqli_real_escape_string($connect, $_POST['senha_antiga']);
+							$senhaAntiga = tratarString($_POST['senha_antiga']);
 							$senhaAntiga = md5($senhaAntiga);
 							
 							$funcionarioId = $_SESSION['login_funcionario_id'];
@@ -22,10 +23,10 @@
 							$dados = mysqli_fetch_array($resultado);
 							$senhaCadastrada = $dados[0];
 
-							$senhaNova = mysqli_real_escape_string($connect, $_POST['nova_senha']);
+							$senhaNova = tratarString($_POST['nova_senha']);
 							$senhaNova = md5($senhaNova);
 				
-							$confirmaSenhaNova = mysqli_real_escape_string($connect, $_POST['confirma_nova_senha']);
+							$confirmaSenhaNova = tratarString($_POST['confirma_nova_senha']);
 							$confirmaSenhaNova = md5($confirmaSenhaNova);
 
 							if($senhaAntiga !=$senhaCadastrada){
@@ -81,5 +82,6 @@
 </script>
 
 <?php
+	FecharConexao($connect);
 	require_once 'footer.php';
 ?>

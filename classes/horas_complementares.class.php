@@ -20,7 +20,7 @@ class HorasComplementares
 
 	function cadastrarHorasComplementares(){
 		
-		global $connect;
+		$connect = Conexao();
 		
 		$sql = "INSERT INTO `horas_complementares`(`evento`, `entidade`, `data_ocorrencia`, `carga_horaria`, `aluno_aluno_id`) VALUES ('$this->evento', '$this->entidade', '$this->data_ocorrencia', '$this->carga_horaria', '$this->aluno_id')";
 		
@@ -31,6 +31,7 @@ class HorasComplementares
 		}else{
 			return $resultado;
 		}
+		FecharConexao();
 	}
 
 }

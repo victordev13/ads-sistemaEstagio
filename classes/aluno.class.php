@@ -21,7 +21,7 @@ class Aluno
 
 	public function cadastrar(){
 		
-		global $connect; 
+		$connect = Conexao(); 
 
 		$sql = "INSERT INTO nucleo_estagio.aluno (nome, matricula, curso_id) VALUES('$this->nome', '$this->matricula', '$this->curso');";
 		$resultado = mysqli_query($connect, $sql);
@@ -31,11 +31,12 @@ class Aluno
 		}else{
 			return false;
 		}
+		FecharConexao($connect);
 	}
 
 	public function cadastrarLogin(){
 
-		global $connect;
+		$connect = Conexao();
 
 		$sql = "SELECT aluno_id FROM nucleo_estagio.aluno WHERE matricula='$this->matricula';";
 		$resultado = mysqli_query($connect, $sql);
@@ -50,6 +51,8 @@ class Aluno
 		}else{
 			return false;
 		}
+		FecharConexao($connect);
 	}
+	
 }
 ?>
