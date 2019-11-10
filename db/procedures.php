@@ -74,7 +74,7 @@ function horasRestantes($aluno_id, $horasCompletas){
 			$total = $dados['0'] - intval($horasCompletas);
 			return $total."h";
 		}else{
-			return false;
+			return 0;
 		}
 		
 	}else{
