@@ -18,7 +18,7 @@ class RelatorioEstagio
 
 	function cadastrarRelatorioEstagio(){
 		
-		global $connect;
+		$connect = Conexao();
 		
 		$sql = "INSERT INTO relatorio_de_estagio (`classificacao`,`status_relatorio`, `data_entrega`, `estagio_estagio_id`) VALUES ('$this->classificacao', '$this->status', '$this->data_entrega', '$this->estagio_id')";
 		
@@ -29,6 +29,7 @@ class RelatorioEstagio
 		}else{
 			return false;
 		}
+		FecharConexao($connect);
 	}
 
 }
