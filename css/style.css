@@ -2,13 +2,11 @@ html, body, container {height: 100%;}
 .bg-green{
 	 background-color: #007549;
 }
-
 img.logo-form{
     width: 95%; 
     margin: 0 2.5% 20px 2.5%;
     justify-content: center;
 }
-
 .btn-green-fvc{
 	background-color: #01633E;
 	color: white;
@@ -17,17 +15,14 @@ img.logo-form{
 	background-color: #007549;
 	color: #e9e9e9;
 }
-
 .alerta-sm{
 	font-size: 9pt;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 input[type=number] {
     -moz-appearance:textfield;
 }
@@ -35,7 +30,6 @@ input[type=number] {
     height: 60px;
     margin-top: 50px;
 }
-
 @media (max-width: 767px) {
     #footer {
 	    margin-left: -20px;

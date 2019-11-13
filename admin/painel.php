@@ -2,9 +2,7 @@
 require_once'header.php';
 require_once'../functions.php';
 require_once'../db/procedures.php';
-
 ?>
-
 <div class="container mt-5">
     <?php
 if(isset($_SESSION['erro'])){
@@ -13,16 +11,13 @@ if(isset($_SESSION['erro'])){
     echo "</div>";
     unset($_SESSION['erro']);
 }
-
 if(isset($_SESSION['sucesso'])){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
     echo $_SESSION['sucesso'];
     echo "</div>";
     unset($_SESSION['sucesso']);
 }
-
 ?>
-
     <div class="card-deck">
             <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">Alunos cadastrados</div>
@@ -32,7 +27,6 @@ if(isset($_SESSION['sucesso'])){
             </div>
     </div>
 </div>
-
 <?php  
     require_once'footer.php'; 
 ?>

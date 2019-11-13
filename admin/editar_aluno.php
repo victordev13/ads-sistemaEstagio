@@ -2,34 +2,25 @@
     require_once 'header.php';
     require_once '../db/db_connect.php';
     require_once '../classes/aluno.class.php';
-
 if(isset($_GET['m'])){
-  
   $matricula = tratarString($_GET['m']);
   $dados = buscarAluno($matricula);
 }
-
 if(isset($_POST['editar'])){
   if(isset($_POST['nome']) && isset($_POST['curso']) && isset($_POST['matricula'])){
-    
     $nome = tratarString($_POST['nome']);
     $curso =tratarString($_POST['curso']);
     $matricula =tratarString($_POST['matricula']);
-
     $dados = buscarAluno($matricula);  
-
     if(updateAluno($nome, $curso, $matricula, $dados['0'])){
         $_SESSION['sucesso'] = "Alterado com sucesso!";
         header("Location: busca_aluno.php");
-        
     }else{
         $_SESSION['erro'] = "Erro ao alterar cadastro!";
         header("Location: busca_aluno.php");
     }
   }
 }
-
-
 ?>
 <div class="container mt-3 col-md-6">
 <h2>Editar aluno</h2>
@@ -73,7 +64,6 @@ if(isset($_POST['editar'])){
   <button type="submit" class="btn btn-green-fvc" name="editar">Alterar</button>
 </form>
 </div>
-
 <?php
     require_once 'footer.php';
 ?>

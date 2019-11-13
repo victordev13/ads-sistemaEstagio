@@ -1,22 +1,17 @@
 <?php
     require_once 'header.php';
     require_once '../db/db_connect.php';
-
 if(isset($_SESSION['usuario'])){
   $dados = buscarPerfilFuncionario($_SESSION['funcionario_funcionario_id']);  
 }
-
 if(isset($_POST['salvar'])){
   if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario'])){
-    
     $nome = tratarString($_POST['nome']);
     $email = tratarString($_POST['email']);
     $usuario =tratarString($_POST['usuario']);
-
     if(updatePerfilFuncionario($nome, $email, $usuario, $dados['0'])){
         $_SESSION['sucesso'] = "Alterado com sucesso!";
         header("Location: painel.php");
-        
     }else{
         $_SESSION['erro'] = "Erro ao alterar cadastro!";
         header("Location: painel.php");
@@ -46,7 +41,6 @@ if(isset($_POST['salvar'])){
   <button type="submit" class="btn btn-green-fvc" name="salvar">Salvar</button>
 </form>
 </div>
-
 <?php
     require_once 'footer.php';
 ?>

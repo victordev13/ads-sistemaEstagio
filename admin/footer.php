@@ -28,13 +28,49 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalLongoExemplo">Créditos</h5>
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Créditos - Sistema de Estágio e Horas Complementares</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h4>Créditos</h4>
+        <h5>Sobre</h5>
+            <p>Software desenvolvido na disciplina de Projeto Integrado do 4° Período em Análise e Desenvolvimento de Sistemas da Faculdade Vale do Cricaré em São Mateus-ES, no ano de 2019/2, orientado pelo professor Walece Negris Pereira.<br>Foi utilizado como principal requisito, contemplar algum problema identificado posteriormente em processos internos da <a href="https://ivc.br" target="blank">Faculdade Vale do Cricaré</a>.</p>
+            <p><b>Desenvolvido por:</b></p>
+            <div class="row">
+                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
+                    <img class="card-img-top" src="../img/sehc.png" alt="Andressa Costa de Jesus">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">Andressa Costa de J.</h6>
+                    </div>
+                </div></a>
+                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
+                    <img class="card-img-top" src="../img/sehc.png" alt="Andressa Costa de Jesus">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">Jéssica Sales dos S.</h6>
+                    </div>
+                </div></a>
+                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
+                    <img class="card-img-top" src="../img/sehc.png" alt="Andressa Costa de Jesus">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">João Victor da S.</h6>
+                    </div>
+                </div></a>
+                 <a href="#"><div class="card ml-3" style="width: 8.5rem;">
+                    <img class="card-img-top" src="../img/sehc.png" alt="Andressa Costa de Jesus">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">Lucas Teixeira V.</h6>
+                    </div>
+                </div></a>
+                 <a href="#"><div class="card ml-3" style="width: 8.5rem;">
+                    <img class="card-img-top" src="../img/sehc.png" alt="Andressa Costa de Jesus">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark">Victor de C. Silva</h6>
+                    </div>
+                </div></a>
+            </div>
+            
+        <img src="../img/sehc.png" class="float-right" style="width: 100px">
       </div>
     </div>
   </div>

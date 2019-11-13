@@ -2,7 +2,6 @@
     require_once 'header.php';
     require_once '../db/db_connect.php';
     require_once '../classes/funcionario.class.php';
-
     if(isset($_POST)){
         if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['usuario']) && isset($_POST['senha'])){
             $nome = tratarString($_POST['nome']);
@@ -10,11 +9,8 @@
             $usuario = tratarString($_POST['usuario']);
             $senha = tratarString($_POST['senha']);
             $senha = md5($senha);
-
             $funcionario = new Funcionario($nome, $email, $usuario, $senha);
-
             $cadastro = $funcionario->cadastrar();
-
             if($cadastro){
                 $_SESSION['sucesso'] = "Funcionário ".$nome." cadastrado com sucesso!";
               }else{
@@ -26,21 +22,18 @@
 <div class="container mt-3 col-md-6">
 <h2>Cadastrar Funcionário</h2>
 <?php
-
 if(isset($_SESSION['erro'])){
     echo "<div class='alert alert-danger alerta-sm' role='alert'>";
     echo $_SESSION['erro'];
     echo "</div>";
     unset($_SESSION['erro']);
 }
-
 if(isset($_SESSION['sucesso'])){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
     echo $_SESSION['sucesso'];
     echo "</div>";
     unset($_SESSION['sucesso']);
 }
-
 ?>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="cadastrarAluno">
   <div class="form-row">
@@ -66,7 +59,6 @@ if(isset($_SESSION['sucesso'])){
   <button type="submit" class="btn btn-green-fvc">Cadastrar</button>
 </form>
 </div>
-
 <?php
     require_once 'footer.php';
 ?>

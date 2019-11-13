@@ -3,7 +3,6 @@
     require_once '../db/db_connect.php';
     require_once'../db/procedures.php';
     $connect = Conexao();
-
     if(isset($_POST)){
         if(isset($_POST['matricula'])){
             $matricula = tratarString($_POST['matricula']);
@@ -15,7 +14,6 @@
             }
         }
     }
-
     if(isset($_POST['excluir'])){
       if(excluirAluno($_SESSION['aluno_id'])){
         $_SESSION['sucesso'] = "Aluno excluído com sucesso!";
@@ -45,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <!--modal excluir horas -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ExcluirEstagio">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -71,21 +68,18 @@
 <div class="container mt-3 col-md-8">
 <h2>Buscar Aluno</h2>
 <?php
-
 if(isset($_SESSION['erro'])){
     echo "<div class='alert alert-danger alerta-sm' role='alert'>";
     echo $_SESSION['erro'];
     echo "</div>";
     unset($_SESSION['erro']);
 }
-
 if(isset($_SESSION['sucesso'])){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
     echo $_SESSION['sucesso'];
     echo "</div>";
     unset($_SESSION['sucesso']);
 }
-
 ?>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="cadastrarAluno">
   <div class="form-row">
@@ -99,7 +93,6 @@ if(isset($_SESSION['sucesso'])){
                 </button>
             </span>
 </form>
-
 <?php
 if(isset($resultado)){
     if(!$resultado == false){
@@ -109,7 +102,6 @@ if(isset($resultado)){
         $matricula = $resultado[2];
         $curso_id = $resultado[3];
         $curso = $resultado[4];
-
         $table_aluno_head = "<hr><h2>Aluno</h2>
         <table class='table table-striped mt-2'>
         <thead>
@@ -120,7 +112,6 @@ if(isset($resultado)){
             <th scope-'col'></th>
           </tr>
         </thead>" ;
-
         $table_aluno_body = "<tbody>
         <tr>
           <th scope='row'>".$nome."</th>
@@ -133,18 +124,14 @@ if(isset($resultado)){
         </tr>
       </tbody>
     </table><br>";
-        
     echo $table_aluno_head;
     echo $table_aluno_body;
-
     $dados_estagio = buscaEstagioCadastrado($_SESSION['aluno_id']);
-
     if($dados_estagio){
       $contrato = $dados_estagio['0'];
       $convenio = $dados_estagio['1'];
       $data_registro = $dados_estagio['2'];
       $qdt_relatorios = $dados_estagio['3'];
-
       $table_estagio_head = "<h3>Estágio</h3>
       <table class='table table-striped mt-2'>
           <thead>
@@ -153,35 +140,26 @@ if(isset($resultado)){
               <th scope='col'>Convênio</th>
               <th scope='col'>Data do registro</th>
               <th scope='col'>Relatórios entregues</th>
-            
            </tr>
           </thead>";
-
           $table_estagio_body = "<tbody>
           <tr>
             <th scope='row'>".$contrato."</th>
             <td>".$convenio."</td>
             <td>".$data_registro."</td>
             <td>".$qdt_relatorios."</td>
-            
           </tr>
         </tbody>
       </table><br>";
-        
     echo $table_estagio_head;
     echo $table_estagio_body;
-
     }else{
       echo "Aluno não possui estágio cadastrado!<br>"; 
     }
-
     $connect = Conexao();
-
     $horas = somaHoras($_SESSION['aluno_id']);
     $horas_restantes = horasRestantes($aluno_id, $horas);
-
     if($horas){
-
      $table_horas_head = "<h3>Horas complementares</h3>
     <table class='table table-striped mt-2'>
         <thead>
@@ -190,7 +168,6 @@ if(isset($resultado)){
             <th scope='col'>Horas restantes</th>
           </tr>
         </thead>" ;
-
         $table_horas_body = "<tbody>
         <tr>
           <th scope='row'>".$horas."</th>
@@ -198,7 +175,6 @@ if(isset($resultado)){
         </tr>
       </tbody>
     </table>";
-        
     echo $table_horas_head;
     echo $table_horas_body;
     }else{
@@ -208,7 +184,6 @@ if(isset($resultado)){
 }
 ?>
 </div>
-
 <?php
     FecharConexao($connect);
     require_once 'footer.php';

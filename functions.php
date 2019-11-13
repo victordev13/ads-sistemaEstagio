@@ -1,6 +1,5 @@
 <?php
 require_once'db/db_connect.php';
-
 function formatarCPF($valor){
 	$valor = trim($valor);
 	$valor = str_replace(".", "", $valor);
@@ -9,7 +8,6 @@ function formatarCPF($valor){
 	$valor = str_replace("/", "", $valor);
 	return $valor;
 }
-
 function tratarString($string){
 	$connect = Conexao();
 	$stringTratada = mysqli_real_escape_string($connect, $string);
@@ -17,12 +15,9 @@ function tratarString($string){
 	FecharConexao($connect);
 }
 function loginAluno($cpf, $senha){
-	
  	$connect = Conexao();
 	$sql = "SELECT * FROM login_aluno WHERE cpf = '$cpf' AND senha = '$senha'";
-
 	$res_query = mysqli_query($connect, $sql);
-
 	if(mysqli_num_rows($res_query)){
 		$dados = mysqli_fetch_array($res_query);
 		$_SESSION['logado'] = true;
@@ -39,12 +34,10 @@ function loginAluno($cpf, $senha){
 	}
 	FecharConexao($connect);
 }
-
 function loginAdministrador($usuario, $senha){
 	$connect = Conexao();
 	$sql = "SELECT * FROM login_funcionario WHERE usuario = '$usuario' AND senha = '$senha'";
 	$res_query = mysqli_query($connect, $sql);
-
 	if(mysqli_num_rows($res_query)){
 		$dados = mysqli_fetch_array($res_query);
 		$_SESSION['logado'] = true;
@@ -53,7 +46,6 @@ function loginAdministrador($usuario, $senha){
 		$_SESSION['usuario'] = $dados[1];
 		$_SESSION['senha'] = $dados[2];
 		$_SESSION['funcionario_funcionario_id'] = $dados[3];
-
 		header("Location: admin/painel.php");
 	}else{
 		$_SESSION['erroLogin'] = true;
@@ -62,9 +54,7 @@ function loginAdministrador($usuario, $senha){
 	}
 	FecharConexao($connect);
 }
-
 function ValidaSessao($sessao, $nivelUsuario){
-
 	if(!isset($_SESSION)){
 		session_start();
 	}
@@ -76,14 +66,10 @@ function ValidaSessao($sessao, $nivelUsuario){
 		}
 	}
 }
-
 function Cursos(){
-
 	$connect = Conexao();
-	
 	$sql = "SELECT curso FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
-
 	if($resultado){
 		while($reg = $resultado->fetch_array()) {
 			$dados[] = $reg['curso']; 
@@ -94,15 +80,10 @@ function Cursos(){
 	}
 	FecharConexao($connect);
 }
-
-
 function CursosId(){
-
 	$connect = Conexao();;
-	
 	$sql = "SELECT curso_id FROM nucleo_estagio.curso";
 	$resultado = mysqli_query($connect, $sql);
-
 	if($resultado){
 		while($reg = $resultado->fetch_array()) {
 			$dados[] = $reg['curso_id']; 
@@ -112,11 +93,8 @@ function CursosId(){
 		return false;
 	}
 }
-
 function buscarAluno($matricula){
-
-	$connect = Conexao();;
-	//setar matricula como unique no banco de dados
+	$connect = Conexao();
 	$sql = " SELECT a.aluno_id, a.nome, a.matricula, a.curso_id, l.cpf, l.senha, c.curso FROM aluno A INNER JOIN login_aluno L ON l.aluno_aluno_id = a.aluno_id INNER JOIN curso C ON c.curso_id = a.curso_id WHERE matricula = '$matricula'";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
@@ -136,15 +114,10 @@ function buscarAluno($matricula){
 		return false;
 	}
 }
-
 function buscarIdEstagio($aluno_id){
-
 	$connect = Conexao();
-
 	$sql = " SELECT estagio_id FROM estagio WHERE aluno_aluno_id = '$aluno_id';";
-
 	$resultado = mysqli_query($connect, $sql);
-
 	if($resultado){
 		$dados = mysqli_fetch_array($resultado);
 		return $dados['0'];
@@ -152,10 +125,8 @@ function buscarIdEstagio($aluno_id){
 		return false;
 	}
 }
-
 function updateAluno($nome, $curso, $matricula, $aluno_id){
 	$connect = Conexao();
-
 	$sql = "UPDATE nucleo_estagio.aluno SET nome='$nome', matricula='$matricula', curso_id='$curso' WHERE aluno_id='$aluno_id'";
 	$resultado = mysqli_query($connect, $sql);
 	if($resultado){
@@ -165,15 +136,12 @@ function updateAluno($nome, $curso, $matricula, $aluno_id){
 	}
 	FecharConexao($connect);
 }
-
 function excluirAluno($aluno_id){
 	$connect = Conexao();
-
 	$sql = "DELETE FROM login_aluno WHERE aluno_aluno_id='$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
 	$sql = "DELETE FROM aluno WHERE aluno_id='$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
-
 	if($resultado){
 		return true;
 	}else{ 
@@ -181,14 +149,10 @@ function excluirAluno($aluno_id){
 	}
 	FecharConexao($connect);
 }
-
 function buscarPerfilFuncionario($funcionario_id){
-
 	$connect = Conexao();
-
 	$sql = "SELECT * FROM funcionario F INNER JOIN login_funcionario L ON f.funcionario_id = l.funcionario_funcionario_id WHERE l.funcionario_funcionario_id = '$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
-	
 	if($resultado){
 		while($row_perfil = mysqli_fetch_array($resultado)){
 			$perfil[] = $row_perfil['funcionario_id'];
@@ -204,17 +168,12 @@ function buscarPerfilFuncionario($funcionario_id){
 	}
 	FecharConexao($connect);
 }
-
-
 function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	$connect = Conexao();
-
 	$sql = "UPDATE funcionario SET nome='$nome', email='$email' WHERE funcionario_id='$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
-	
 	$sql = "UPDATE login_funcionario SET usuario='$usuario' WHERE funcionario_funcionario_id='$funcionario_id';";
 	$resultado = mysqli_query($connect, $sql);
-
 	if($resultado){
 		return true;
 	}else{ 
@@ -222,13 +181,10 @@ function updatePerfilFuncionario($nome, $email, $usuario, $funcionario_id){
 	}
 	FecharConexao($connect);
 }
-
 function buscaEstagioCadastrado($aluno_id){
 	$connect = Conexao();
-
 	$sql = "SELECT estagio_id, contrato, num_doc_convenio, data_registro, count(relatorio_de_estagi_id) AS qtd_relatorios FROM estagio INNER JOIN relatorio_de_estagio ON estagio_id = estagio_estagio_id WHERE aluno_aluno_id = '$aluno_id';";
 	$resultado = mysqli_query($connect, $sql);
-	
 	if($resultado){
 		while($row = mysqli_fetch_array($resultado)){
 			$estagio[] = $row['contrato'];
@@ -245,27 +201,4 @@ function buscaEstagioCadastrado($aluno_id){
 		return false;
 	}
 	FecharConexao($connect);
-}
-
-function enviarEmail(){
-
-	ini_set('display_errors', 1);
-
-	error_reporting(E_ALL);
-
-	$from = "testing @ yourdomain";
-
-	$to = "vtrcarvalho.13@gmail.com";
-
-	$subject = "Verificando o correio do PHP";
-
-	$message = "O correio do PHP funciona bem";
-
-	$headers = "De:". $from;
-
-	mail($to, $subject, $message, $headers);
-
-	echo "A mensagem de e-mail foi enviada.";
-
-
 }

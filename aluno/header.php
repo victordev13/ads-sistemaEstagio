@@ -23,7 +23,7 @@ ValidaSessao("logado", 0);
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
   <a class="navbar-brand" href="painel.php">
-    <img src="../img/fvclogo2.png" height="35" class="d-inline-block align-top" alt="">
+    <img src="../img/sehc.png" height="35" class="d-inline-block align-top" alt="">
     Painel do Aluno</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>

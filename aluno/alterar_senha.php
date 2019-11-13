@@ -1,7 +1,8 @@
 <?php
     require_once 'header.php';
     require_once '../db/db_connect.php';
-    require_once '../classes/aluno.class.php';
+	require_once '../classes/aluno.class.php';
+	$connect = Conexao();
 ?>
 <body>
 <div class="row justify-content-center align-items-center" style="height:80vh; width: 100%">
@@ -14,20 +15,15 @@
 						if(isset($_POST['senha_antiga']) && isset($_POST['nova_senha']) && isset($_POST['confirma_nova_senha'])){
 							$senhaAntiga = tratarString($_POST['senha_antiga']);
 							$senhaAntiga = md5($senhaAntiga);
-							
 							$alunoId = $_SESSION['login_aluno_id'];
-							
 							$sql = "SELECT senha FROM login_aluno WHERE login_aluno_id = '$alunoId'";
 							$resultado = mysqli_query($connect, $sql);
 							$dados = mysqli_fetch_array($resultado);
 							$senhaCadastrada = $dados[0];
-
 							$senhaNova = tratarString($_POST['nova_senha']);
 							$senhaNova = md5($senhaNova);
-				
 							$confirmaSenhaNova = tratarString($_POST['confirma_nova_senha']);
 							$confirmaSenhaNova = md5($confirmaSenhaNova);
-
 							if($senhaAntiga !=$senhaCadastrada){
 								$erro = "Senha cadastrada não confere!";
 							}else{
@@ -43,8 +39,6 @@
 									}
 								}
 							}
-
-							
 						}
 					}
                         if(!empty($erro)){
@@ -52,7 +46,6 @@
 							echo $erro;
 							echo "</div>";
 						}
-						
 						if(!empty($sucesso)){
 							echo "<div class='alert alert-success alerta-sm' role='alert'>";
 							echo $sucesso;
@@ -79,7 +72,7 @@
 </body>
 <script>
 </script>
-
 <?php
+	FecharConexao($connect);
 	require_once 'footer.php';
 ?>

@@ -2,7 +2,6 @@
     require_once 'header.php';
     require_once '../db/db_connect.php';
     require_once '../classes/aluno.class.php';
-
     if(isset($_POST)){
         if(isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['curso']) && isset($_POST['matricula'])){
             $nome = tratarString($_POST['nome']);
@@ -11,20 +10,15 @@
             $curso = tratarString($_POST['curso']);
             $matricula = tratarString($_POST['matricula']);
             $matricula = str_pad($matricula, 9, "0", STR_PAD_LEFT);
-
             $aluno = new Aluno($nome, $cpf, $matricula, $curso);
-
             $cadastro = $aluno->cadastrar();
-
             if($cadastro){
               $login = $aluno->cadastrarLogin();
-
               if($login){
                 $sucesso = "Aluno ".$nome." cadastrado com sucesso!";
               }else{
                 $erro = "Ocorreu um erro ao inserir os dados!";
               }
-
             }else{
                 $erro = "Ocorreu um erro ao inserir os dados!";
             }
@@ -34,19 +28,16 @@
 <div class="container mt-3 col-md-6">
 <h2>Cadastrar novo aluno</h2>
 <?php
-
  if(!empty($erro)){
     echo "<div class='alert alert-danger alerta-sm' role='alert'>";
     echo $erro;
     echo "</div>";
 }
-
 if(!empty($sucesso)){
     echo "<div class='alert alert-success alerta-sm' role='alert'>";
     echo $sucesso;
     echo "</div>";
 }
-
 ?>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" id="cadastrarAluno">
   <div class="form-row">
@@ -83,7 +74,6 @@ if(!empty($sucesso)){
   <button type="submit" class="btn btn-green-fvc">Cadastrar</button>
 </form>
 </div>
-
 <?php
     require_once 'footer.php';
 ?>
