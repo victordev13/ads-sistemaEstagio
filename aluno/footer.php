@@ -35,42 +35,51 @@
       </div>
       <div class="modal-body">
         <h5>Sobre</h5>
-            <p>Software desenvolvido para a disciplina de Projeto Integrado, orientado pelo professor Walece Negris Pereira<br>Foi utilizado como principal requisito, contemplar algum problema identificado posteriormente em processos internos da <a href="https://ivc.br" target="blank">Faculdade Vale do Cricaré</a>.</p>
+        <p>Software desenvolvido na disciplina de Projeto Integrado do 4° Período em Análise e Desenvolvimento de Sistemas da Faculdade Vale do Cricaré em São Mateus-ES, no ano de 2019/2, orientado pelo professor Walece Negris Pereira.<br>Foi utilizado como principal requisito, contemplar algum problema identificado posteriormente em processos internos da<a href="https://ivc.br" target="blank">Faculdade Vale do Cricaré</a>.</p>
             <p><b>Desenvolvido por:</b></p>
             <div class="row">
-                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
-                    <img class="card-img-top" src="img/sehc.png" alt="Andressa Costa de Jesus">
+                <div class="card ml-3" style="width: 9rem;">
+                    <img class="card-img-top" src="../img/andressa.jpeg">
                     <div class="card-body">
-                        <h6 class="card-title">Andressa Costa de J.</h6>
+                        <a href="mailto:andressacosta832015@gmail.com"><h6 class="card-title text-dark">Andressa Costa de J.</h6></a>
+                        <hr>
+                        <p style="font-size: 8pt; font-weight: bold;">Analista de Requisitos/ Documentação</p>
                     </div>
                 </div></a>
-                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
-                    <img class="card-img-top" src="img/sehc.png" alt="Andressa Costa de Jesus">
+                <div class="card ml-2" style="width: 9rem;">
+                    <img class="card-img-top" src="../img/jessica.jpeg">
                     <div class="card-body">
-                        <h6 class="card-title">Jéssica Sales dos S.</h6>
+                    <a href="mailto:salesdossantosjessicas@gmail.com"><h6 class="card-title text-dark">Jéssica Sales dos S.</h6></a>
+                        <hr>
+                        <p style="font-size: 8pt; font-weight: bold;">DBA/ Documentação</p>
                     </div>
-                </div></a>
-                <a href="#"><div class="card ml-3" style="width: 8.5rem;">
-                    <img class="card-img-top" src="img/sehc.png" alt="Andressa Costa de Jesus">
+                </div>
+                <div class="card ml-2" style="width: 9rem;">
+                    <img class="card-img-top" src="../img/joao.webp">
                     <div class="card-body">
-                        <h6 class="card-title">João Victor da S.</h6>
+                    <a href="mailto:jvictor.jovdsc@gmail.com"><h6 class="card-title text-dark">João Victor da S.</h6></a>
+                    <hr>
+                    <p style="font-size: 8pt; font-weight: bold;">DBA/ Documentação</p>
                     </div>
-                </div></a>
-                 <a href="#"><div class="card ml-3" style="width: 8.5rem;">
-                    <img class="card-img-top" src="img/sehc.png" alt="Andressa Costa de Jesus">
+                </div>
+                 <div class="card ml-2" style="width: 9rem;">
+                    <img class="card-img-top" src="../img/lucas.webp">
                     <div class="card-body">
-                        <h6 class="card-title">Lucas Teixeira V.</h6>
+                        <a href="mailto:lucastagnert58@gmail.com"><h6 class="card-title text-dark">Lucas Teixeira V.</h6></a>
+                        <hr>
+                        <p style="font-size: 8pt; font-weight: bold;">Documentação</p>
                     </div>
-                </div></a>
-                 <a href="#"><div class="card ml-3" style="width: 8.5rem;">
-                    <img class="card-img-top" src="img/sehc.png" alt="Andressa Costa de Jesus">
+                </div>
+                 <div class="card ml-2" style="width: 9rem;">
+                    <img class="card-img-top" src="../img/victor.jfif">
                     <div class="card-body">
-                        <h6 class="card-title">Victor de C. Silva</h6>
+                        <a href="mailto:vtrcarvalho.13@gmail.com"><h6 class="card-title text-dark">Victor de C. Silva</h6></a>
+                        <hr>
+                        <p style="font-size: 8pt; font-weight: bold;">Gerente/ Desenvolvedor/ Analista/ Documentação</p>
                     </div>
-                </div></a>
+                </div>
             </div>
-            
-        <img src="img/sehc.png" class="float-right" style="width: 100px">
+        <img src="../img/sehc.png" class="float-right" style="width: 100px">
       </div>
     </div>
   </div>
