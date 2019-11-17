@@ -52,6 +52,7 @@ if(isset($_SESSION['sucesso'])){
       <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome de Usuário" required="">
     </div>
     <div class="form-group col-md-4">
+    
       <label for="senha">Senha</label>
       <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" minlength=6 required="">
     </div>

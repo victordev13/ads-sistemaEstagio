@@ -78,26 +78,27 @@
                         </div>
                         <button type="submit" class="btn btn-default btn-green-fvc">Login</button>
                         <a href="#" data-toggle="modal" data-target="#creditos">
-                            <img src="img/sehc.png" class="float-right" style="width: 50px; margin-top: -10px">
+                            <img src="img/bit.png" class="float-right" style="width: 50px; margin-top: -10px">
                         </a> 
                     </form>
                 </div>
             </div>
         </div>
-        <!-- Créditos -->
+<!-- Créditos -->
 <div class="modal fade bd-example-modal-lg" id="creditos" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="TituloModalLongoExemplo">Créditos - Sistema de Estágio e Horas Complementares</h5>
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Créditos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <h5>Sobre</h5>
-        <p>Software desenvolvido na disciplina de Projeto Integrado do 4° Período em Análise e Desenvolvimento de Sistemas da Faculdade Vale do Cricaré em São Mateus-ES, no ano de 2019/2, orientado pelo professor Walece Negris Pereira.<br>Foi utilizado como principal requisito, contemplar algum problema identificado posteriormente em processos internos da<a href="https://ivc.br" target="blank">Faculdade Vale do Cricaré</a>.</p>
-            <p><b>Desenvolvido por:</b></p>
+        <p>Software desenvolvido na disciplina de Projeto Integrado do 4° Período em Análise e Desenvolvimento de Sistemas da <a href="https://ivc.br" target="blank">Faculdade Vale do Cricaré</a> em São Mateus-ES, no ano de 2019/2.<br>Orientado pelo professor Walece Negris Pereira.</p>
+            <p><b>Desenvolvido por BIT Soluções.</b></p>
+            <p><b>Equipe:</b></p>
             <div class="row">
                 <div class="card ml-3" style="width: 9rem;">
                     <img class="card-img-top" src="img/andressa.jpeg">
@@ -140,7 +141,7 @@
                     </div>
                 </div>
             </div>
-        <img src="img/sehc.png" class="float-right" style="width: 100px">
+        <img src="img/bit.png" class="float-right" style="width: 100px">
       </div>
     </div>
   </div>
